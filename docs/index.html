@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Tracker</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <h1>Software Tracker</h1>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle colour scheme">☾ Dark</button>
+  </header>
+
+  <main class="main-content">
+    <noscript>
+      <p style="padding:2rem;text-align:center;color:#6c757d">
+        JavaScript is required to display the project dashboard.
+        The underlying data files are available in the <code>docs/data/</code> directory.
+      </p>
+    </noscript>
+
+    <!-- Index view -->
+    <div id="index-view">
+      <div id="filter-bar" class="filter-bar" role="group" aria-label="Filter by category"></div>
+      <div id="project-grid" class="project-grid" role="list"></div>
+    </div>
+
+    <!-- Detail view -->
+    <div id="detail-view" hidden></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Powered by <a href="https://github.com/features/actions" target="_blank" rel="noopener noreferrer">GitHub Actions</a> &amp; <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a></p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

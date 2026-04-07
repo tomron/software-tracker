@@ -1,0 +1,86 @@
+# Software Tracker — periodic pipeline
+#
+# Required secrets (set in repo Settings → Secrets and variables → Actions):
+#   OPENAI_API_KEY    — OpenAI API key (if using OpenAI provider)
+#   ANTHROPIC_API_KEY — Anthropic API key (if using Anthropic provider)
+#
+# Optional secrets:
+#   NTFY_TOKEN        — ntfy.sh access token (for private topics)
+#   SEARCH_API_KEY    — Brave/Serper API key (for alternatives web search)
+#
+# The built-in GITHUB_TOKEN is used automatically for commits.
+
+name: Track projects
+
+on:
+  schedule:
+    # Weekly on Monday at 08:00 UTC
+    - cron: "0 8 * * 1"
+
+  workflow_dispatch:
+    inputs:
+      project:
+        description: "Project slug to run (leave blank for all projects)"
+        required: false
+        default: ""
+
+concurrency:
+  group: track-pipeline
+  cancel-in-progress: false
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Validate project input
+        env:
+          PROJECT: ${{ github.event.inputs.project }}
+        run: |
+          if [ -n "${PROJECT}" ] && [ ! -d "projects/${PROJECT}" ]; then
+            echo "Error: Unknown project slug '${PROJECT}'."
+            echo "Available projects:"
+            ls projects/
+            exit 1
+          fi
+
+      - name: Run tracker
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
+          SEARCH_API_KEY: ${{ secrets.SEARCH_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT: ${{ github.event.inputs.project }}
+        run: |
+          if [ -n "${PROJECT}" ]; then
+            uv run python -m tracker --project "${PROJECT}"
+          else
+            uv run python -m tracker
+          fi
+
+      - name: Commit and push updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ docs/data/
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            DATE=$(date -u +%Y-%m-%d)
+            git commit -m "chore: update tracker data [${DATE}]"
+            git push
+          fi

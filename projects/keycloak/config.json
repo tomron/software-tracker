@@ -1,0 +1,47 @@
+{
+  "name": "Keycloak",
+  "description": "Open source identity and access management server with support for SSO, OAuth 2.0, and OpenID Connect.",
+
+  "repo": "https://github.com/keycloak/keycloak",
+  "homepage": "https://www.keycloak.org",
+  "changelog_url": "https://www.keycloak.org/docs/latest/release_notes/",
+
+  "links": [
+    { "label": "Docs", "url": "https://www.keycloak.org/documentation" },
+    { "label": "Blog", "url": "https://www.keycloak.org/blog" }
+  ],
+
+  "categories": ["auth", "identity", "sso"],
+
+  "questions": [
+    "Does it support Okta as an external identity provider?",
+    "Is there an official hosted/cloud version?",
+    "Does it support fine-grained authorisation policies?",
+    "What is the current license?"
+  ],
+
+  "instructions": "Focus on enterprise features, SSO integrations, Kubernetes operator support, and any changes to the licensing model.",
+
+  "alternatives": [
+    {
+      "name": "Auth0",
+      "links": ["https://auth0.com"],
+      "comment": "SaaS-only, generous free tier, no self-hosting option."
+    },
+    {
+      "name": "Authentik",
+      "links": ["https://goauthentik.io"],
+      "comment": "Open source, self-hostable, modern UI, growing enterprise adoption."
+    },
+    {
+      "name": "Zitadel",
+      "links": ["https://zitadel.com"],
+      "comment": "Cloud-native IAM, open source, strong audit logging."
+    }
+  ],
+
+  "notify": {
+    "topics": ["my-tracker-keycloak"],
+    "on": ["answer_changed", "breaking_change", "error"]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "_comment": "Global defaults applied to all tracked projects. All fields are optional.",
+
+  "llm": {
+    "_comment": "LLM provider config. provider: 'openai' or 'anthropic'.",
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "api_key_env": "OPENAI_API_KEY"
+  },
+
+  "search": {
+    "_comment": "Search provider for alternatives discovery. provider: 'brave' or 'serper'.",
+    "provider": "brave",
+    "api_key_env": "SEARCH_API_KEY"
+  },
+
+  "notify": {
+    "_comment": "ntfy.sh notification config. on: answer_changed | breaking_change | run_complete | error",
+    "topics": ["my-software-tracker"],
+    "on": ["answer_changed", "breaking_change", "error"]
+  },
+
+  "questions": [
+    "What is the current license?",
+    "Is the project actively maintained?"
+  ],
+
+  "instructions": "Be concise. Focus on changes relevant to software engineers evaluating or using the project."
+}

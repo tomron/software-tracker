@@ -1,0 +1,20 @@
+[project]
+name = "software-tracker"
+version = "0.1.0"
+description = "Periodic tracker for open source and commercial software projects"
+requires-python = ">=3.11"
+dependencies = [
+    "PyGitHub>=2.5",
+    "requests>=2.32",
+    "beautifulsoup4>=4.12",
+    "openai>=1.58",
+    "anthropic>=0.42",
+    "pydantic>=2.10",
+]
+
+[project.scripts]
+tracker = "tracker.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

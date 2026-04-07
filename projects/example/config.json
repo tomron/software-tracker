@@ -1,0 +1,42 @@
+{
+  "_comment": "Example project config. Only 'name' is required. Remove any fields you don't need.",
+
+  "name": "Example Project",
+  "description": "A short description of what this project does.",
+
+  "repo": "https://github.com/owner/repo",
+  "homepage": "https://example.com",
+  "changelog_url": "https://example.com/changelog",
+
+  "links": [
+    { "label": "Docs", "url": "https://docs.example.com" },
+    { "label": "Blog", "url": "https://blog.example.com" }
+  ],
+
+  "categories": ["category-one", "category-two"],
+
+  "questions": [
+    "Does it support Okta as an identity provider?",
+    "Is there an official hosted/cloud version?",
+    "What is the current license?"
+  ],
+
+  "instructions": "Focus on enterprise features and self-hosting options.",
+
+  "alternatives": [
+    {
+      "name": "Some Alternative",
+      "links": ["https://alternative.com"],
+      "comment": "Open source, self-hostable."
+    },
+    {
+      "name": "Another Alternative"
+    }
+  ],
+
+  "notify": {
+    "_comment": "Overrides global notify entirely if present. Remove to use global settings.",
+    "topics": ["my-tracker-example"],
+    "on": ["answer_changed", "breaking_change", "run_complete", "error"]
+  }
+}
