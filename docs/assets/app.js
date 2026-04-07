@@ -206,8 +206,9 @@ async function renderDetail(slug) {
 
   // Links
   const linkItems = [];
-  if (p.homepage) linkItems.push({ href: p.homepage, label: 'Homepage ↗' });
-  if (p.repo)     linkItems.push({ href: p.repo,     label: 'Repository ↗' });
+  if (p.homepage)       linkItems.push({ href: p.homepage,       label: 'Homepage ↗' });
+  if (p.repo)           linkItems.push({ href: p.repo,           label: 'Repository ↗' });
+  if (p.changelog_url)  linkItems.push({ href: p.changelog_url,  label: 'Changelog ↗' });
   if (Array.isArray(p.links)) p.links.forEach(l => linkItems.push({ href: l.url, label: `${l.label} ↗` }));
   if (linkItems.length > 0) {
     const linksDiv = el('div', { cls: 'detail-links' });
@@ -233,6 +234,13 @@ async function renderDetail(slug) {
   }
   wrapper.appendChild(header);
 
+  // Summary
+  if (p.summary) {
+    const sec = section('Summary');
+    sec.appendChild(el('p', { cls: 'summary-text', text: p.summary }));
+    wrapper.appendChild(sec);
+  }
+
   // Breaking change banner
   if (p.breaking_changes) {
     const banner = el('div', { cls: 'breaking-banner' });
@@ -244,13 +252,6 @@ async function renderDetail(slug) {
       banner.appendChild(ul);
     }
     wrapper.appendChild(banner);
-  }
-
-  // Summary
-  if (p.summary) {
-    const sec = section('Summary');
-    sec.appendChild(el('p', { cls: 'summary-text', text: p.summary }));
-    wrapper.appendChild(sec);
   }
 
   // Q&A answers

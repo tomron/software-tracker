@@ -25,8 +25,9 @@ def analyse(
     questions: list[str],
     instructions: str,
     llm_cfg: LlmConfig,
+    project_cfg: ProjectConfig | None = None,
 ) -> dict[str, Any]:
-    prompt = _build_prompt(changelog_text, questions, instructions)
+    prompt = _build_prompt(changelog_text, questions, instructions, project_cfg)
     for attempt in range(2):
         raw = _call_llm(prompt, llm_cfg)
         try:
@@ -48,7 +49,24 @@ def analyse(
     return {"summary": "", "answers": {}, "breaking_changes": False, "breaking_excerpts": []}
 
 
-def _build_prompt(changelog_text: str, questions: list[str], instructions: str) -> str:
+def _build_prompt(
+    changelog_text: str,
+    questions: list[str],
+    instructions: str,
+    project_cfg: ProjectConfig | None = None,
+) -> str:
+    # Build project context block (links for the LLM to reference in the summary)
+    project_block = ""
+    if project_cfg:
+        lines = [f"Project: {project_cfg.name}"]
+        if project_cfg.repo:
+            lines.append(f"Repository: {project_cfg.repo}")
+        if project_cfg.homepage:
+            lines.append(f"Homepage: {project_cfg.homepage}")
+        if project_cfg.changelog_url:
+            lines.append(f"Changelog: {project_cfg.changelog_url}")
+        project_block = "\n".join(lines) + "\n\n"
+
     questions_block = ""
     if questions:
         formatted = "\n".join(f"- {q}" for q in questions)
@@ -58,8 +76,10 @@ def _build_prompt(changelog_text: str, questions: list[str], instructions: str) 
 
     return (
         "You are a software analyst. Analyse the following changelog/release notes and return a JSON object.\n\n"
+        f"{project_block}"
         "Required JSON fields:\n"
-        '- "summary": 2-4 sentence plain-text summary of the most notable recent changes\n'
+        '- "summary": 2-4 sentence plain-text summary of the most notable recent changes. '
+        "Include specific version numbers, release dates, and direct links to release notes or relevant URLs where available.\n"
         '- "answers": object mapping each question to a short answer string\n'
         '- "breaking_changes": true if any breaking/deprecated/removed changes are present\n'
         '- "breaking_excerpts": list of short excerpt strings (max 3) describing breaking changes, or empty list\n'

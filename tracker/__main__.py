@@ -83,7 +83,7 @@ def main() -> None:
                 continue
 
             # Analyse
-            llm_result = analyse(changelog_text, questions, instructions, llm_cfg)
+            llm_result = analyse(changelog_text, questions, instructions, llm_cfg, project_cfg)
 
             # Alternatives
             alternatives = discover_alternatives(project_cfg, llm_cfg, global_cfg.search)
@@ -91,6 +91,12 @@ def main() -> None:
             # Build output
             output = {
                 "name": project_cfg.name,
+                "description": project_cfg.description,
+                "repo": project_cfg.repo,
+                "homepage": project_cfg.homepage,
+                "changelog_url": project_cfg.changelog_url,
+                "links": [{"label": l.label, "url": l.url} for l in project_cfg.links],
+                "categories": project_cfg.categories,
                 "summary": llm_result["summary"],
                 "answers": llm_result["answers"],
                 "breaking_changes": llm_result["breaking_changes"],
