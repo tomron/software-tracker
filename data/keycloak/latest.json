@@ -1,0 +1,63 @@
+{
+  "name": "Keycloak",
+  "summary": "Keycloak is an open-source identity and access management solution currently at version 26.5.0. Recent releases have added support for fine-grained admin permissions, Organizations (multi-tenancy/CIAM), passkeys, FAPI 2 Final, DPoP, and standard token exchange. The Kubernetes Operator has seen significant enhancements including NetworkPolicy creation, ServiceMonitor automation, and TLS secret support on the Keycloak CR. Several breaking changes and removals have occurred across recent major versions, including removal of legacy features and deprecated options.",
+  "answers": {
+    "What is the current license?": "Apache License 2.0 (open-source; not explicitly stated in changelog but Keycloak is Apache 2.0 licensed)",
+    "Is the project actively maintained?": "Yes, actively maintained with frequent releases including 26.5.0 as the latest",
+    "Does it support Okta as an external identity provider?": "Not explicitly mentioned, but Keycloak supports generic OAuth 2.0/OIDC identity providers and SAML, which can include Okta",
+    "Is there an official hosted/cloud version?": "Not mentioned in the changelog; Keycloak is primarily self-hosted",
+    "Does it support fine-grained authorisation policies?": "Yes, fine-grained admin permissions are supported as of 26.2.0, and authorization policies have been a long-standing feature"
+  },
+  "breaking_changes": true,
+  "breaking_excerpts": [
+    "Hostname v1 feature removed; proxy option removed; OpenShift v3 identity brokering removed in Keycloak 26.0.0",
+    "Breaking changes to the User Profile SPI; performing actions on behalf of another already authenticated user is no longer possible (Keycloak 24.0.0)",
+    "Partial update to user attributes when updating users through the Admin User API is no longer supported (Keycloak 24.0.4); Java 17 support deprecated; most Java adapters removed (Keycloak 25.0.0)"
+  ],
+  "alternatives": [
+    {
+      "name": "Auth0",
+      "url": "https://auth0.com",
+      "review": "SaaS-only, generous free tier, no self-hosting option.",
+      "source": "config"
+    },
+    {
+      "name": "Authentik",
+      "url": "https://goauthentik.io",
+      "review": "Open source, self-hostable, modern UI, growing enterprise adoption.",
+      "source": "config"
+    },
+    {
+      "name": "Zitadel",
+      "url": "https://zitadel.com",
+      "review": "Cloud-native IAM, open source, strong audit logging.",
+      "source": "config"
+    },
+    {
+      "name": "Authelia",
+      "url": "https://www.authelia.com",
+      "review": "Authelia is lightweight and focused on reverse-proxy authentication, making it simpler to deploy but lacking Keycloak's full-featured identity brokering and admin console.",
+      "source": "llm_only"
+    },
+    {
+      "name": "Ory Hydra",
+      "url": "https://www.ory.sh/hydra",
+      "review": "Ory Hydra is a highly scalable, headless OAuth 2.0 and OIDC server that gives developers more flexibility but requires building your own login UI and user management.",
+      "source": "llm_only"
+    },
+    {
+      "name": "Gluu Server",
+      "url": "https://gluu.org",
+      "review": "Gluu provides enterprise-grade IAM with strong FIDO2 and UMA support, but it is heavier to operate and the open-source tier has less community momentum than Keycloak.",
+      "source": "llm_only"
+    },
+    {
+      "name": "Dex",
+      "url": "https://dexidp.io",
+      "review": "Dex is a lightweight, Kubernetes-friendly OIDC identity provider that excels as a federation layer, but lacks the comprehensive user management and admin features Keycloak provides.",
+      "source": "llm_only"
+    }
+  ],
+  "run_at": "2026-04-07T18:31:33.619489+00:00",
+  "project_slug": "keycloak"
+}
