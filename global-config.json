@@ -3,9 +3,9 @@
 
   "llm": {
     "_comment": "LLM provider config. provider: 'openai' or 'anthropic'.",
-    "provider": "openai",
-    "model": "gpt-4o-mini",
-    "api_key_env": "OPENAI_API_KEY"
+    "provider": "anthropic",
+    "model": "claude-sonnet-4-6",
+    "api_key_env": "ANTHROPIC_API_KEY"
   },
 
   "search": {

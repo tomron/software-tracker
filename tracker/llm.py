@@ -96,10 +96,8 @@ def _call_anthropic(prompt: str, model: str, api_key: str) -> str:
     import anthropic
 
     client = anthropic.Anthropic(api_key=api_key)
-    # Default to claude-haiku for cost efficiency if no model specified
-    resolved_model = model if model != "gpt-4o-mini" else "claude-haiku-4-5-20251001"
     message = client.messages.create(
-        model=resolved_model,
+        model=model,
         max_tokens=1024,
         messages=[{"role": "user", "content": prompt}],
     )

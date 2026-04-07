@@ -123,13 +123,12 @@ def _call_anthropic_with_search(
     import anthropic
 
     client = anthropic.Anthropic(api_key=api_key)
-    resolved_model = model if model != "gpt-4o-mini" else "claude-haiku-4-5-20251001"
     tools: list[dict[str, Any]] = []
     if search_api_key:
         tools = [{"type": "web_search_20250305", "name": "web_search", "max_uses": 3}]
 
     kwargs: dict[str, Any] = {
-        "model": resolved_model,
+        "model": model,
         "max_tokens": 1024,
         "messages": [{"role": "user", "content": prompt}],
     }
