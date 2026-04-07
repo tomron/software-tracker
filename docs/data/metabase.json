@@ -1,0 +1,93 @@
+{
+  "name": "Metabase",
+  "description": "Open source business intelligence and analytics platform. Create dashboards and explore data without writing SQL.",
+  "repo": "https://github.com/metabase/metabase",
+  "homepage": "https://www.metabase.com",
+  "changelog_url": "https://github.com/metabase/metabase/releases",
+  "links": [
+    {
+      "label": "Docs",
+      "url": "https://www.metabase.com/docs/latest/"
+    },
+    {
+      "label": "Blog",
+      "url": "https://www.metabase.com/blog/"
+    }
+  ],
+  "categories": [
+    "analytics",
+    "bi",
+    "self-hosted",
+    "dashboards"
+  ],
+  "summary": "Metabase is actively releasing frequent patch updates across multiple stable branches. The latest stable release is v0.59.5 (OSS) / v1.59.5 (Enterprise), released on April 2, 2025 (https://github.com/metabase/metabase/releases/tag/v0.59.5). A beta release of v0.60.0 was published on March 27, 2025, indicating active development of the next major version. Multiple older branches (54.x through 59.x) are receiving concurrent patch support, reflecting a mature release cadence. Detailed per-release changelogs are linked from each GitHub release page but were not included in the provided changelog text.",
+  "answers": {
+    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license",
+    "Is the project actively maintained?": "Yes — multiple releases across several branches in March–April 2025",
+    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud (managed cloud) is available at metabase.com",
+    "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition",
+    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, BigQuery, Snowflake, Redshift, MongoDB, Presto, Druid, Oracle, Vertica, SparkSQL, and others via drivers"
+  },
+  "breaking_changes": false,
+  "breaking_excerpts": [],
+  "alternatives": [
+    {
+      "name": "Redash",
+      "url": "https://redash.io",
+      "review": "Open source, query-focused, simpler feature set.",
+      "source": "config",
+      "features": {}
+    },
+    {
+      "name": "Apache Superset",
+      "url": "https://superset.apache.org",
+      "review": "Apache-licensed, rich visualisation library, steeper setup curve.",
+      "source": "config",
+      "features": {}
+    },
+    {
+      "name": "Grafana",
+      "url": "https://grafana.com",
+      "review": "Primarily metrics/time-series but increasingly used for general BI.",
+      "source": "config",
+      "features": {}
+    },
+    {
+      "name": "Hex",
+      "url": "https://hex.tech/",
+      "review": "Close source, enterprise focus, AI Analytics Platform for your whole team",
+      "source": "config",
+      "features": {}
+    },
+    {
+      "name": "Tableau",
+      "url": "https://www.tableau.com",
+      "review": "Tableau offers powerful and polished visualizations with enterprise support, but it is proprietary and significantly more expensive than Metabase.",
+      "source": "llm_only",
+      "features": {
+        "open_source": false,
+        "self_hosted": true,
+        "cloud_hosted": true,
+        "no_sql_required": true,
+        "free_tier": false,
+        "SSO_support": true
+      }
+    },
+    {
+      "name": "Lightdash",
+      "url": "https://www.lightdash.com",
+      "review": "Lightdash integrates tightly with dbt for a metrics-first BI experience, but has a smaller ecosystem and fewer connectors than Metabase.",
+      "source": "llm_only",
+      "features": {
+        "open_source": true,
+        "self_hosted": true,
+        "cloud_hosted": true,
+        "no_sql_required": true,
+        "free_tier": true,
+        "SSO_support": true
+      }
+    }
+  ],
+  "run_at": "2026-04-07T18:55:01.732319+00:00",
+  "project_slug": "metabase"
+}

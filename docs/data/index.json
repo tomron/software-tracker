@@ -1,6 +1,14 @@
 [
   {
-    "slug": "keycloak",
-    "name": "Keycloak"
+    "slug": "cabinet",
+    "name": "Cabinet"
+  },
+  {
+    "slug": "metabase",
+    "name": "Metabase"
+  },
+  {
+    "slug": "ntfy",
+    "name": "ntfy"
   }
 ]

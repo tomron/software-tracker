@@ -1,0 +1,96 @@
+{
+  "name": "Cabinet",
+  "description": "A lightweight self-hosted file cabinet and document manager.",
+  "repo": "https://github.com/hilash/cabinet",
+  "homepage": "https://github.com/hilash/cabinet",
+  "changelog_url": "",
+  "links": [],
+  "categories": [
+    "storage",
+    "self-hosted",
+    "documents"
+  ],
+  "summary": "Cabinet v0.2.2 marks the initial release of the project. The changelog is minimal, providing no detail on features, storage backends, or deployment options beyond the version tag itself. No release date is specified in the provided notes. Engineers evaluating this project should refer directly to the repository at https://github.com/hilash/cabinet for further documentation.",
+  "answers": {
+    "What is the current license?": "Not specified in the changelog; check https://github.com/hilash/cabinet for license details.",
+    "Is the project actively maintained?": "Unknown; only one release (v0.2.2) is documented with no further activity indicated.",
+    "Does it support user authentication?": "Not mentioned in the changelog.",
+    "Is there a Docker image available?": "Not mentioned in the changelog."
+  },
+  "breaking_changes": false,
+  "breaking_excerpts": [],
+  "alternatives": [
+    {
+      "name": "Paperless-ngx",
+      "url": "https://github.com/paperless-ngx/paperless-ngx",
+      "review": "Paperless-ngx offers far more powerful OCR, tagging, and document indexing than Cabinet, but is significantly heavier to self-host and configure.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": true,
+        "full_text_search": true,
+        "free_tier": true,
+        "cloud_hosted": false
+      }
+    },
+    {
+      "name": "Teedy",
+      "url": "https://teedy.io",
+      "review": "Teedy provides a more feature-rich document management system with workflows and metadata, but introduces more complexity compared to Cabinet's lightweight approach.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": true,
+        "full_text_search": true,
+        "free_tier": true,
+        "cloud_hosted": false
+      }
+    },
+    {
+      "name": "Nextcloud",
+      "url": "https://nextcloud.com",
+      "review": "Nextcloud is a full productivity platform that includes file management, but is far heavier and more complex than Cabinet for users who only need document storage.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": false,
+        "full_text_search": true,
+        "free_tier": true,
+        "cloud_hosted": true
+      }
+    },
+    {
+      "name": "Docspell",
+      "url": "https://docspell.org",
+      "review": "Docspell excels at automated document processing and tagging with OCR, but requires more infrastructure setup compared to Cabinet's simpler deployment.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": true,
+        "full_text_search": true,
+        "free_tier": true,
+        "cloud_hosted": false
+      }
+    },
+    {
+      "name": "Mayan EDMS",
+      "url": "https://www.mayan-edms.com",
+      "review": "Mayan EDMS is an enterprise-grade document management system with advanced workflows and permissions, making it much heavier than Cabinet but far more capable for organizations.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": true,
+        "full_text_search": true,
+        "free_tier": true,
+        "cloud_hosted": false
+      }
+    }
+  ],
+  "run_at": "2026-04-07T18:54:39.519813+00:00",
+  "project_slug": "cabinet"
+}
