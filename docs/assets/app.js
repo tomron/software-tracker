@@ -281,23 +281,69 @@ async function renderDetail(slug) {
   const alts = Array.isArray(p.alternatives) ? p.alternatives : [];
   if (alts.length > 0) {
     const sec = section('Alternatives');
-    const ul = el('ul', { cls: 'alt-list' });
-    alts.forEach(alt => {
-      const li = el('li', { cls: 'alt-item' });
-      const info = el('div', { cls: 'alt-info' });
-      const nameEl = el('div', { cls: 'alt-name' });
-      if (alt.url) {
-        nameEl.appendChild(el('a', { href: alt.url, text: `${alt.name} ↗`, target: '_blank', rel: 'noopener noreferrer' }));
-      } else {
-        nameEl.textContent = alt.name;
-      }
-      info.appendChild(nameEl);
-      if (alt.review) info.appendChild(el('div', { cls: 'alt-review', text: alt.review }));
-      li.appendChild(info);
-      if (alt.source) li.appendChild(el('span', { cls: 'badge-source', text: alt.source }));
-      ul.appendChild(li);
-    });
-    sec.appendChild(ul);
+
+    // Collect all feature keys across all alternatives
+    const featureKeys = [...new Set(
+      alts.flatMap(a => (a.features && typeof a.features === 'object') ? Object.keys(a.features) : [])
+    )];
+
+    if (featureKeys.length > 0) {
+      // Comparison table
+      const table = el('table', { cls: 'alt-table' });
+      const thead = el('thead');
+      const hrow = el('tr');
+      hrow.appendChild(el('th', { text: 'Alternative' }));
+      featureKeys.forEach(f => hrow.appendChild(el('th', { text: f })));
+      hrow.appendChild(el('th', { text: 'Notes' }));
+      thead.appendChild(hrow);
+      table.appendChild(thead);
+
+      const tbody = el('tbody');
+      alts.forEach(alt => {
+        const row = el('tr');
+        // Name cell
+        const nameCell = el('td');
+        if (alt.url) {
+          nameCell.appendChild(el('a', { href: alt.url, text: alt.name, target: '_blank', rel: 'noopener noreferrer' }));
+        } else {
+          nameCell.textContent = alt.name;
+        }
+        if (alt.source) nameCell.appendChild(el('span', { cls: 'badge-source', text: alt.source }));
+        row.appendChild(nameCell);
+        // Feature cells
+        featureKeys.forEach(f => {
+          const val = alt.features ? alt.features[f] : undefined;
+          const cell = el('td', { cls: 'alt-feature-cell' });
+          cell.textContent = val === true ? '✅' : val === false ? '❌' : '—';
+          row.appendChild(cell);
+        });
+        // Review/notes cell
+        row.appendChild(el('td', { cls: 'alt-review', text: alt.review || '' }));
+        tbody.appendChild(row);
+      });
+      table.appendChild(tbody);
+      sec.appendChild(table);
+    } else {
+      // Fallback: plain list when no features data
+      const ul = el('ul', { cls: 'alt-list' });
+      alts.forEach(alt => {
+        const li = el('li', { cls: 'alt-item' });
+        const info = el('div', { cls: 'alt-info' });
+        const nameEl = el('div', { cls: 'alt-name' });
+        if (alt.url) {
+          nameEl.appendChild(el('a', { href: alt.url, text: `${alt.name} ↗`, target: '_blank', rel: 'noopener noreferrer' }));
+        } else {
+          nameEl.textContent = alt.name;
+        }
+        info.appendChild(nameEl);
+        if (alt.review) info.appendChild(el('div', { cls: 'alt-review', text: alt.review }));
+        li.appendChild(info);
+        if (alt.source) li.appendChild(el('span', { cls: 'badge-source', text: alt.source }));
+        ul.appendChild(li);
+      });
+      sec.appendChild(ul);
+    }
+
     wrapper.appendChild(sec);
   }
 

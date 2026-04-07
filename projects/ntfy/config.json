@@ -1,0 +1,36 @@
+{
+  "name": "ntfy",
+  "description": "Simple HTTP-based pub-sub notification service. Send push notifications to your phone or desktop via scripts.",
+
+  "repo": "https://github.com/binwiederhier/ntfy",
+  "homepage": "https://ntfy.sh",
+  "changelog_url": "https://github.com/binwiederhier/ntfy/releases",
+
+  "links": [
+    { "label": "Docs", "url": "https://docs.ntfy.sh" }
+  ],
+
+  "categories": ["notifications", "self-hosted", "messaging"],
+
+  "questions": [
+    "What is the current license?",
+    "Is the project actively maintained?",
+    "Does it support authentication and access control?",
+    "Is there a hosted cloud version available?"
+  ],
+
+  "instructions": "Focus on new notification features, self-hosting improvements, authentication changes, and client library updates.",
+
+  "alternatives": [
+    {
+      "name": "Pushover",
+      "links": ["https://pushover.net"],
+      "comment": "Paid SaaS, simple API, iOS/Android apps."
+    },
+    {
+      "name": "Gotify",
+      "links": ["https://gotify.net"],
+      "comment": "Self-hosted only, real-time push via WebSocket."
+    }
+  ]
+}

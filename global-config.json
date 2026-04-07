@@ -25,5 +25,5 @@
     "Is the project actively maintained?"
   ],
 
-  "instructions": "Be concise. Focus on changes relevant to software engineers evaluating or using the project."
+  "instructions": "Be concise. Focus on changes relevant to software engineers evaluating or using the project. Where relevant, use tables to compare features or options. For boolean feature comparisons use ✅ (supported) and ❌ (not supported) as visual cues."
 }

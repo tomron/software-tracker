@@ -13,14 +13,14 @@ def discover_alternatives(
     project_cfg: ProjectConfig,
     llm_cfg: LlmConfig,
     search_cfg: SearchConfig,
-) -> list[dict[str, str]]:
+) -> list[dict]:
     search_api_key = search_cfg.resolve_api_key()
     config_entries = _config_alternatives(project_cfg)
     discovered = _discover_via_llm(project_cfg, llm_cfg, search_api_key)
     return _merge(config_entries, discovered)
 
 
-def _config_alternatives(project_cfg: ProjectConfig) -> list[dict[str, str]]:
+def _config_alternatives(project_cfg: ProjectConfig) -> list[dict]:
     results = []
     for alt in project_cfg.alternatives:
         results.append({
@@ -28,6 +28,7 @@ def _config_alternatives(project_cfg: ProjectConfig) -> list[dict[str, str]]:
             "url": alt.links[0] if alt.links else "",
             "review": alt.comment,
             "source": "config",
+            "features": {},
         })
     return results
 
@@ -36,7 +37,7 @@ def _discover_via_llm(
     project_cfg: ProjectConfig,
     llm_cfg: LlmConfig,
     search_api_key: str | None,
-) -> list[dict[str, str]]:
+) -> list[dict]:
     source = "web_search" if search_api_key else "llm_only"
     prompt = _build_alternatives_prompt(project_cfg, search_api_key is not None)
     try:
@@ -54,6 +55,7 @@ def _discover_via_llm(
                 "url": e.get("url", ""),
                 "review": e.get("review", ""),
                 "source": source,
+                "features": e.get("features") if isinstance(e.get("features"), dict) else {},
             }
             for e in entries
             if e.get("name")
@@ -76,7 +78,11 @@ def _build_alternatives_prompt(project_cfg: ProjectConfig, use_search: bool) -> 
         "Return a JSON array of alternative projects. Each entry must be a JSON object with:\n"
         '- "name": project name (string, required)\n'
         '- "url": homepage or repo URL (string, optional)\n'
-        '- "review": one sentence describing trade-offs vs the main project (string, required)\n\n'
+        '- "review": one sentence describing trade-offs vs the main project (string, required)\n'
+        '- "features": object mapping 4-6 key feature names to true/false booleans indicating '
+        "whether the alternative supports that feature. Choose features that are most relevant "
+        "for comparing alternatives to the main project (e.g. self-hosted, open-source, "
+        "cloud-hosted, SSO, free tier, etc.). Use consistent feature names across all entries.\n\n"
         "Return at most 5 alternatives. Respond with only a valid JSON array, no markdown fences."
     )
 
@@ -143,9 +149,9 @@ def _call_anthropic_with_search(
 
 
 def _merge(
-    config_entries: list[dict[str, str]],
-    discovered: list[dict[str, str]],
-) -> list[dict[str, str]]:
+    config_entries: list[dict],
+    discovered: list[dict],
+) -> list[dict]:
     config_names_lower = {e["name"].lower() for e in config_entries}
     deduped_discovered = [
         e for e in discovered if e["name"].lower() not in config_names_lower

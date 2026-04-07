@@ -305,6 +305,28 @@ a:hover { text-decoration: underline; color: var(--accent-hover); }
 .qa-table th { color: var(--text-muted); font-weight: 500; font-size: 0.82rem; }
 .qa-table tr:last-child td { border-bottom: none; }
 
+/* ── Alternatives table ──────────────────────────────────────────────────── */
+.alt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+.alt-table th,
+.alt-table td {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+.alt-table thead th {
+  background: var(--chip-bg);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.alt-table tbody tr:hover { background: var(--card-hover); }
+.alt-feature-cell { text-align: center; font-size: 1rem; }
+
 /* ── Alternatives list ───────────────────────────────────────────────────── */
 .alt-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
 .alt-item {

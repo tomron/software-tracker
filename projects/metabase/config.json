@@ -1,0 +1,48 @@
+{
+  "name": "Metabase",
+  "description": "Open source business intelligence and analytics platform. Create dashboards and explore data without writing SQL.",
+
+  "repo": "https://github.com/metabase/metabase",
+  "homepage": "https://www.metabase.com",
+  "changelog_url": "https://github.com/metabase/metabase/releases",
+
+  "links": [
+    { "label": "Docs", "url": "https://www.metabase.com/docs/latest/" },
+    { "label": "Blog", "url": "https://www.metabase.com/blog/" }
+  ],
+
+  "categories": ["analytics", "bi", "self-hosted", "dashboards"],
+
+  "questions": [
+    "What is the current license?",
+    "Is there a cloud-hosted version available?",
+    "Does it support SSO and SAML authentication?",
+    "What databases/data sources are supported?",
+    "Is the project actively maintained?"
+  ],
+
+  "instructions": "Focus on new data source connectors, dashboard features, embedding capabilities, enterprise features, and any licensing or pricing changes.",
+
+  "alternatives": [
+    {
+      "name": "Redash",
+      "links": ["https://redash.io"],
+      "comment": "Open source, query-focused, simpler feature set."
+    },
+    {
+      "name": "Apache Superset",
+      "links": ["https://superset.apache.org"],
+      "comment": "Apache-licensed, rich visualisation library, steeper setup curve."
+    },
+    {
+      "name": "Grafana",
+      "links": ["https://grafana.com"],
+      "comment": "Primarily metrics/time-series but increasingly used for general BI."
+    },
+    {
+      "name": "Hex",
+      "links": ["https://hex.tech/"],
+      "comment": "Close source, enterprise focus, AI Analytics Platform for your whole team"
+    }
+  ]
+}
