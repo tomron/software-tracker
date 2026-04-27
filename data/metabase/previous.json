@@ -20,13 +20,13 @@
     "self-hosted",
     "dashboards"
   ],
-  "summary": "Metabase is actively releasing across multiple stable branches simultaneously. The latest stable release is v0.59.6 (Open Source) / v1.59.6 (Enterprise), released on April 9, 2025. Multiple concurrent patch releases across branches 54–59 were published on the same date, indicating active long-term support across versions. A beta for v0.60.0 was released on March 27, 2025. Full changelogs are available at https://github.com/metabase/metabase/releases.",
+  "summary": "Metabase is actively releasing updates across multiple stable branches simultaneously. The current latest stable release is v0.59.6 (Open Source) / v1.59.6 (Enterprise), released on April 9, 2025. A beta release v0.60.0-beta is also available as of March 27, 2025. Both Open Source and Enterprise editions are available as Docker images and JAR downloads; see the full release list at https://github.com/metabase/metabase/releases.",
   "answers": {
-    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition requires a commercial license from Metabase.",
-    "Is the project actively maintained?": "Yes — multiple releases across several stable branches published in April 2025, with a v0.60.0-beta also available.",
-    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud (managed hosting) is available at metabase.com.",
+    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license (Metabase Commercial License).",
+    "Is the project actively maintained?": "Yes — multiple releases across several stable branches were published on April 9, 2025, with a beta for v0.60.0 in late March 2025.",
+    "Is there a cloud-hosted version available?": "Yes — Metabase offers a managed cloud (Metabase Cloud) at https://www.metabase.com.",
     "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition.",
-    "What databases/data sources are supported?": "PostgreSQL, MySQL, BigQuery, Snowflake, Redshift, SQL Server, SQLite, MongoDB, Presto, Druid, Oracle, SparkSQL, and more (connector list not detailed in this changelog excerpt)."
+    "What databases/data sources are supported?": "Supports a wide range of databases including PostgreSQL, MySQL, BigQuery, Snowflake, Redshift, SQL Server, SQLite, MongoDB, Presto, Druid, Athena, SparkSQL, and more; specific connector details are not listed in this changelog excerpt."
   },
   "breaking_changes": false,
   "breaking_excerpts": [],
@@ -62,7 +62,7 @@
     {
       "name": "Tableau",
       "url": "https://www.tableau.com",
-      "review": "Offers far more advanced visualization and analytics capabilities than Metabase but is significantly more expensive and not open source.",
+      "review": "Tableau offers more advanced visualizations and enterprise features but is expensive, proprietary, and not self-hostable in the same open-source sense as Metabase.",
       "source": "llm_only",
       "features": {
         "open_source": false,
@@ -70,13 +70,13 @@
         "cloud_hosted": true,
         "no_sql_required": true,
         "free_tier": false,
-        "sso_support": true
+        "SSO": true
       }
     },
     {
       "name": "Lightdash",
       "url": "https://www.lightdash.com",
-      "review": "Tightly integrated with dbt for a metrics-as-code workflow, making it more governed and developer-friendly than Metabase but less accessible to purely non-technical users.",
+      "review": "Lightdash integrates tightly with dbt for a metrics-layer-driven approach, making it more structured than Metabase but requiring dbt adoption as a prerequisite.",
       "source": "llm_only",
       "features": {
         "open_source": true,
@@ -84,10 +84,10 @@
         "cloud_hosted": true,
         "no_sql_required": true,
         "free_tier": true,
-        "sso_support": true
+        "SSO": true
       }
     }
   ],
-  "run_at": "2026-04-13T08:46:34.554256+00:00",
+  "run_at": "2026-04-20T08:49:48.861295+00:00",
   "project_slug": "metabase"
 }
