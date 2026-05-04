@@ -15,18 +15,18 @@
     "self-hosted",
     "messaging"
   ],
-  "summary": "ntfy has seen rapid development in early 2026, with v2.21.0 (released 2026-03-30) adding email verification via `smtp-sender-verify` after ntfy.sh's AWS SES account was suspended due to unsolicited email abuse. v2.20.0 introduced S3-compatible object storage for attachments, and v2.18.0 (released 2026-03-07) added experimental PostgreSQL support as an alternative to the SQLite backend — a major architectural change. Read replica support was added in v2.19.0. Full release notes are available at https://github.com/binwiederhier/ntfy/releases.",
+  "summary": "ntfy v2.22.0 (released 2026-04-21) is the latest release, focusing on a security fix for an SSRF vulnerability in the web push endpoint (GHSA-w9hq-5jg7-q4j7) and several web app bug fixes. Recent notable additions include S3-compatible attachment storage (v2.20.0), PostgreSQL read replica support (v2.19.0), verified email recipients via smtp-sender-verify (v2.21.0), and a major PostgreSQL backend rewrite (v2.18.0). Full release notes are available at https://github.com/binwiederhier/ntfy/releases.",
   "answers": {
-    "What is the current license?": "Apache 2.0 (server) and GPL-2.0 (client) — check repository for exact details",
-    "Is the project actively maintained?": "Yes — multiple releases in March 2026 alone",
-    "Does it support authentication and access control?": "Yes — user management, access control, and authorization queries supported",
-    "Is there a hosted cloud version available?": "Yes — https://ntfy.sh"
+    "What is the current license?": "Apache 2.0 (server) and GPL 2.0 (clients), dual-licensed",
+    "Is the project actively maintained?": "Yes — multiple releases in March–April 2026 with active bug fixes and features",
+    "Does it support authentication and access control?": "Yes — access tokens, user accounts, and permission-based topic access control are supported",
+    "Is there a hosted cloud version available?": "Yes — available at https://ntfy.sh"
   },
   "breaking_changes": true,
   "breaking_excerpts": [
-    "v2.20.0: ntfy will take full control over the attachment directory or S3 bucket, deleting files matching the message ID format (^[A-Za-z0-9]{12}$) with no DB entries — do not reuse the attachment-cache-dir for other purposes.",
-    "v2.21.0: ntfy.sh now requires email address verification via smtp-sender-verify before sending email notifications, due to AWS SES suspension.",
-    "v2.18.0: Experimental PostgreSQL backend introduced as an alternative to SQLite via database-url config option — significant architectural change requiring migration."
+    "v2.20.0: ntfy will take full control over the attachment directory or S3 bucket — files matching the message ID format with no database entries will be deleted. Do not reuse the attachment-cache-dir for anything else.",
+    "v2.21.0: ntfy.sh now requires email address verification (smtp-sender-verify) before sending email notifications; unverified recipients will be rejected.",
+    "v2.22.0: Web push endpoint allow-list regex tightened to prevent SSRF (GHSA-w9hq-5jg7-q4j7) — previously unanchored patterns are now rejected."
   ],
   "alternatives": [
     {
@@ -46,46 +46,46 @@
     {
       "name": "Apprise",
       "url": "https://github.com/caronc/apprise",
-      "review": "Apprise is a versatile open-source notification library supporting dozens of services but is a library/CLI tool rather than a standalone pub-sub server with its own push infrastructure.",
+      "review": "Apprise is a versatile open-source notification library supporting 80+ services but is a library/CLI tool rather than a standalone pub-sub server with its own push delivery infrastructure.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "cloud_hosted": false,
         "free_tier": true,
-        "android_push": false,
-        "scripting_friendly": true
+        "ios_support": true,
+        "script_friendly_api": true
       }
     },
     {
       "name": "Pushbullet",
       "url": "https://www.pushbullet.com",
-      "review": "Pushbullet provides cross-device notifications with file and link sharing features but is a proprietary cloud-only service with a restrictive free tier compared to ntfy's fully open approach.",
+      "review": "Pushbullet provides cross-device notifications and file sharing with a polished UI but is a closed-source cloud service with a limited free tier and a history of feature degradation.",
       "source": "llm_only",
       "features": {
         "self_hosted": false,
         "open_source": false,
         "cloud_hosted": true,
         "free_tier": true,
-        "android_push": true,
-        "scripting_friendly": true
+        "ios_support": true,
+        "script_friendly_api": true
       }
     },
     {
       "name": "Bark",
       "url": "https://github.com/Finb/Bark",
-      "review": "Bark offers a simple self-hosted HTTP push notification service similar to ntfy but is iOS-only, making it unsuitable for Android or desktop users.",
+      "review": "Bark is a lightweight open-source iOS-focused push notification tool that can be self-hosted but is limited to Apple devices and lacks the multi-platform reach of ntfy.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "cloud_hosted": true,
         "free_tier": true,
-        "android_push": false,
-        "scripting_friendly": true
+        "ios_support": true,
+        "script_friendly_api": true
       }
     }
   ],
-  "run_at": "2026-04-20T08:50:11.781476+00:00",
+  "run_at": "2026-04-27T08:55:56.452378+00:00",
   "project_slug": "ntfy"
 }
