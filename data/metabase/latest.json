@@ -20,13 +20,13 @@
     "self-hosted",
     "dashboards"
   ],
-  "summary": "Metabase is actively releasing frequent patch updates across multiple supported version branches. The latest release is v0.60.2 (Open Source) / v1.60.2 (Enterprise), released on April 22, 2025 (https://github.com/metabase/metabase/releases/tag/v0.60.2). Multiple branches (v54, v55, v57, v58, v59, v60) are receiving concurrent patch maintenance, indicating a mature multi-version support policy. Detailed changelogs per release were not rendered in the provided changelog text, so specific feature changes per release are not available from this source.",
+  "summary": "Metabase is actively releasing across multiple stable branches simultaneously. The latest stable release is v0.60.4 (Open Source) / v1.60.4 (Enterprise), released on May 7, 2025 (https://github.com/metabase/metabase/releases/tag/v0.60.4). A beta release v0.61.0-beta is also available as of May 4, 2025. Multiple older branches (54.x through 59.x) continue to receive patch updates, indicating long-term support across versions. Detailed changelogs per release are linked from each release page on GitHub.",
   "answers": {
-    "What is the current license?": "Dual-licensed: Open Source edition under AGPL v3; Enterprise edition under a commercial license",
-    "Is the project actively maintained?": "Yes — multiple patch releases across several version branches as recently as April 22, 2025",
-    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud (managed cloud) is available at metabase.com",
-    "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition",
-    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, BigQuery, Snowflake, Redshift, MongoDB, Oracle, Druid, Presto/Trino, SparkSQL, and more via drivers; full list at metabase.com/docs"
+    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license.",
+    "Is the project actively maintained?": "Yes — multiple releases across several branches published on May 7, 2025.",
+    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud (managed cloud) is available at metabase.com.",
+    "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition.",
+    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, BigQuery, Snowflake, Redshift, MongoDB, Presto, Druid, Oracle, Spark SQL, Vertica, and more via drivers."
   },
   "breaking_changes": false,
   "breaking_excerpts": [],
@@ -60,9 +60,23 @@
       "features": {}
     },
     {
+      "name": "Looker Studio",
+      "url": "https://lookerstudio.google.com",
+      "review": "Looker Studio is free and easy to use with Google ecosystem data sources, but is closed-source, cloud-only, and less capable for complex multi-source BI compared to Metabase.",
+      "source": "llm_only",
+      "features": {
+        "open_source": false,
+        "self_hosted": false,
+        "cloud_hosted": true,
+        "no_sql_required": true,
+        "free_tier": true,
+        "sso_support": true
+      }
+    },
+    {
       "name": "Tableau",
       "url": "https://www.tableau.com",
-      "review": "Tableau offers more powerful and polished data visualization capabilities but is proprietary, significantly more expensive, and does not offer a self-hosted open-source option.",
+      "review": "Tableau offers far more advanced visualization and analytics capabilities than Metabase, but is expensive, proprietary, and has no meaningful free tier for production use.",
       "source": "llm_only",
       "features": {
         "open_source": false,
@@ -70,24 +84,10 @@
         "cloud_hosted": true,
         "no_sql_required": true,
         "free_tier": false,
-        "SSO_support": true
-      }
-    },
-    {
-      "name": "Lightdash",
-      "url": "https://www.lightdash.com",
-      "review": "Lightdash integrates natively with dbt for a metrics-layer-first approach, making it ideal for dbt users, but it has a smaller ecosystem and fewer data source connectors than Metabase.",
-      "source": "llm_only",
-      "features": {
-        "open_source": true,
-        "self_hosted": true,
-        "cloud_hosted": true,
-        "no_sql_required": true,
-        "free_tier": true,
-        "SSO_support": true
+        "sso_support": true
       }
     }
   ],
-  "run_at": "2026-05-04T08:54:13.680397+00:00",
+  "run_at": "2026-05-11T09:13:49.769855+00:00",
   "project_slug": "metabase"
 }

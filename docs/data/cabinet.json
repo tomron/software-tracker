@@ -10,12 +10,12 @@
     "self-hosted",
     "documents"
   ],
-  "summary": "Cabinet v0.4.3 (released 2026-04-30) is the latest stable release, fixing a long-standing DMG signing issue that prevented native modules from loading in packaged macOS builds. The headline v0.4.0 release (433 commits since v0.3.4) introduced a Skills system for installable agent capabilities, a multi-provider BYOK AI runtime supporting 8 CLI providers (Claude, Codex, Gemini, etc.), a persistent terminal/PTY mode, a redesigned Tasks Board with drag-and-drop, and a full-text search palette. The project also added MIT licensing, anonymous opt-out telemetry, and extensive UX/accessibility improvements. See release notes at https://github.com/hilash/cabinet.",
+  "summary": "Cabinet v0.4.3 (released 2026-04-30) is the latest stable release, fixing native module loading in signed macOS DMG builds. The landmark v0.4.0 release (433 commits since v0.3.4) introduced a multi-provider AI runtime supporting 8 CLI providers (Claude, Codex, Gemini, etc.), an installable Skills system, terminal mode with PTY adapters, a rebuilt Tasks Board v2 with drag-and-drop, and a full Cmd+K search palette. The project also added MIT licensing, anonymous opt-out telemetry, and numerous UX/accessibility improvements. See release notes at https://github.com/hilash/cabinet.",
   "answers": {
     "What is the current license?": "MIT (added in v0.4.0)",
-    "Is the project actively maintained?": "Yes — multiple releases per day in April 2026, most recently v0.4.3 on 2026-04-30",
-    "Does it support user authentication?": "Partial — server-side legal/ToS acceptance flow present; no explicit user login/auth system mentioned in changelog",
-    "Is there a Docker image available?": "Not mentioned in the changelog"
+    "Is the project actively maintained?": "Yes — multiple releases in April 2026, including several patch releases on 2026-04-30",
+    "Does it support user authentication?": "No explicit user authentication system mentioned; legal/ToS acceptance flow present but no login/auth described",
+    "Is there a Docker image available?": "No — distribution is via macOS DMG and npm CLI (cabinetai)"
   },
   "breaking_changes": false,
   "breaking_excerpts": [],
@@ -23,74 +23,74 @@
     {
       "name": "Paperless-ngx",
       "url": "https://github.com/paperless-ngx/paperless-ngx",
-      "review": "Paperless-ngx offers far more powerful OCR, tagging, and document indexing than Cabinet but is significantly heavier and more complex to self-host.",
+      "review": "Paperless-ngx offers far more advanced document management with OCR and tagging but is significantly heavier and more complex to set up than Cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": true,
         "full_text_search": true,
-        "lightweight": false,
+        "free_tier": true,
         "cloud_hosted": false
       }
     },
     {
       "name": "Teedy",
       "url": "https://teedy.io",
-      "review": "Teedy is a more feature-rich document management system with user permissions and workflows, but comes with greater resource overhead compared to Cabinet.",
+      "review": "Teedy provides a more feature-rich document management system with workflows and versioning, but requires more resources and configuration compared to Cabinet's lightweight approach.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": true,
         "full_text_search": true,
-        "lightweight": false,
-        "cloud_hosted": false
-      }
-    },
-    {
-      "name": "Docspell",
-      "url": "https://docspell.org",
-      "review": "Docspell provides robust auto-tagging and OCR pipelines making it more powerful for document organization, but requires more setup effort than Cabinet.",
-      "source": "llm_only",
-      "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": true,
-        "full_text_search": true,
-        "lightweight": false,
+        "free_tier": true,
         "cloud_hosted": false
       }
     },
     {
       "name": "Nextcloud",
       "url": "https://nextcloud.com",
-      "review": "Nextcloud covers file management and much more through its app ecosystem, but is a far heavier platform compared to Cabinet's minimal footprint.",
+      "review": "Nextcloud is a comprehensive self-hosted cloud platform covering files and much more, but is overkill if you only need a simple document cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": false,
         "full_text_search": true,
-        "lightweight": false,
+        "free_tier": true,
         "cloud_hosted": true
       }
     },
     {
-      "name": "Filestash",
-      "url": "https://www.filestash.app",
-      "review": "Filestash is similarly lightweight and focused on file browsing across multiple storage backends, but lacks Cabinet's document-management and annotation features.",
+      "name": "Docspell",
+      "url": "https://docspell.org",
+      "review": "Docspell excels at automated document organization with OCR and metadata extraction, but has a steeper learning curve and heavier stack than Cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
-        "ocr_support": false,
-        "full_text_search": false,
-        "lightweight": true,
+        "ocr_support": true,
+        "full_text_search": true,
+        "free_tier": true,
+        "cloud_hosted": false
+      }
+    },
+    {
+      "name": "Mayan EDMS",
+      "url": "https://www.mayan-edms.com",
+      "review": "Mayan EDMS is an enterprise-grade document management system with extensive features, making it far more powerful but considerably more complex than the lightweight Cabinet project.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": true,
+        "full_text_search": true,
+        "free_tier": true,
         "cloud_hosted": false
       }
     }
   ],
-  "run_at": "2026-05-04T08:53:53.748115+00:00",
+  "run_at": "2026-05-11T09:13:29.535142+00:00",
   "project_slug": "cabinet"
 }
