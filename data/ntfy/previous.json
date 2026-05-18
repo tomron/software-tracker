@@ -15,18 +15,18 @@
     "self-hosted",
     "messaging"
   ],
-  "summary": "ntfy v2.22.0 (released 2026-04-21) is the latest release, focusing on a security fix for an SSRF vulnerability in web push endpoint validation (GHSA-w9hq-5jg7-q4j7) and several web app bug fixes. Recent notable additions include S3-compatible attachment storage (v2.20.0), PostgreSQL read replica support (v2.19.0), verified email recipients via smtp-sender-verify (v2.21.0), and full PostgreSQL backend support (v2.18.0). The project is actively maintained with frequent releases. See the full changelog at https://github.com/binwiederhier/ntfy/releases.",
+  "summary": "ntfy v2.22.0 (released 2026-04-21) is the latest release, addressing a security fix for an SSRF vulnerability in the web push endpoint (GHSA-w9hq-5jg7-q4j7) and several web app bug fixes. Recent notable additions include S3-compatible object storage for attachments (v2.20.0), PostgreSQL read replica support (v2.19.0), verified email recipient enforcement via smtp-sender-verify (v2.21.0), and full PostgreSQL backend support introduced in v2.18.0. The project is actively maintained with frequent releases in 2026. Release notes are available at https://github.com/binwiederhier/ntfy/releases.",
   "answers": {
-    "What is the current license?": "Apache 2.0 (server) and GPL-2.0 (clients) — dual licensed; check https://github.com/binwiederhier/ntfy for exact terms",
-    "Is the project actively maintained?": "Yes — multiple releases in March–April 2026 with active bug fixes and new features",
-    "Does it support authentication and access control?": "Yes — access tokens, user accounts, and access control lists are supported",
+    "What is the current license?": "Apache 2.0 (server) and GPL (client) — dual-licensed; check repository for specifics",
+    "Is the project actively maintained?": "Yes — multiple releases in early 2026, most recently v2.22.0 on 2026-04-21",
+    "Does it support authentication and access control?": "Yes — access tokens, user authentication, and per-topic access control are supported",
     "Is there a hosted cloud version available?": "Yes — hosted at https://ntfy.sh"
   },
   "breaking_changes": true,
   "breaking_excerpts": [
-    "v2.20.0: ntfy will take full control over the attachment-cache-dir or S3 bucket; files matching the message ID format (^[A-Za-z0-9]{12}$) with no database entries will be deleted — do not reuse the attachment directory for other purposes.",
-    "v2.21.0: smtp-sender-verify flag introduced to require email address verification before sending notifications; ntfy.sh now enforces this due to AWS SES suspension from unsolicited email abuse.",
-    "v2.22.0: Web push endpoint allow-list regex tightened to prevent SSRF (GHSA-w9hq-5jg7-q4j7) — previously unanchored patterns may have permitted unintended endpoints."
+    "v2.20.0: ntfy will take full control over the attachment directory or S3 bucket — files matching the message ID format with no database entries will be deleted. Do not reuse attachment-cache-dir for other purposes.",
+    "v2.21.0: ntfy.sh now requires email address verification (smtp-sender-verify) before sending email notifications, following AWS SES account suspension due to unsolicited emails.",
+    "v2.22.0: Web push endpoint allow-list regex tightened to prevent SSRF (GHSA-w9hq-5jg7-q4j7) — previously unanchored pattern may have permitted unintended endpoints."
   ],
   "alternatives": [
     {
@@ -46,46 +46,46 @@
     {
       "name": "Apprise",
       "url": "https://github.com/caronc/apprise",
-      "review": "Apprise supports dozens of notification platforms in one library but is a notification dispatcher rather than a pub-sub server, so it lacks ntfy's topic-based subscription model.",
+      "review": "Apprise is a powerful open-source notification library supporting 80+ services but is a library/CLI tool rather than a standalone pub-sub server with its own push infrastructure.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "cloud_hosted": false,
-        "no_auth_required": true,
         "free_tier": true,
-        "mobile_push": true
+        "android_push": false,
+        "rest_api": false
       }
     },
     {
       "name": "Pushbullet",
       "url": "https://www.pushbullet.com",
-      "review": "Pushbullet provides cloud-hosted push notifications with cross-device syncing and file sharing, but has a restricted free tier and is not open-source or self-hostable like ntfy.",
+      "review": "Pushbullet provides cross-device notifications and file sharing with a user-friendly interface but is a closed-source cloud service with a restrictive free tier.",
       "source": "llm_only",
       "features": {
         "self_hosted": false,
         "open_source": false,
         "cloud_hosted": true,
-        "no_auth_required": false,
         "free_tier": true,
-        "mobile_push": true
+        "android_push": true,
+        "rest_api": true
       }
     },
     {
-      "name": "Ntopng / Mosquitto (MQTT)",
-      "url": "https://mosquitto.org",
-      "review": "Eclipse Mosquitto is a lightweight open-source MQTT broker offering robust pub-sub messaging but requires MQTT clients rather than simple HTTP, making scripting integration more complex than ntfy.",
+      "name": "Ntopng Alerts / Grafana Alerting",
+      "url": "https://grafana.com/docs/grafana/latest/alerting",
+      "review": "Grafana Alerting is a robust enterprise-grade alerting system with rich integrations but is designed for monitoring dashboards rather than lightweight scriptable pub-sub notifications.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
-        "cloud_hosted": false,
-        "no_auth_required": false,
+        "cloud_hosted": true,
         "free_tier": true,
-        "mobile_push": false
+        "android_push": false,
+        "rest_api": true
       }
     }
   ],
-  "run_at": "2026-05-04T08:54:34.642184+00:00",
+  "run_at": "2026-05-11T09:14:12.111082+00:00",
   "project_slug": "ntfy"
 }

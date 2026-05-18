@@ -20,13 +20,13 @@
     "self-hosted",
     "dashboards"
   ],
-  "summary": "Metabase is actively releasing across multiple stable branches simultaneously. The latest stable release is v0.60.4 (Open Source) / v1.60.4 (Enterprise), released on May 7, 2025 (https://github.com/metabase/metabase/releases/tag/v0.60.4). A beta release v0.61.0-beta is also available as of May 4, 2025. Multiple older branches (54.x through 59.x) continue to receive patch updates, indicating long-term support across versions. Detailed changelogs per release are linked from each release page on GitHub.",
+  "summary": "Metabase is actively releasing patch updates across multiple maintained branches simultaneously. The latest release is v0.61.1 (Open Source) / v1.61.1 (Enterprise), published on May 14, 2025. Multiple version branches (54.x through 61.x) are receiving concurrent patch releases, indicating long-term support across several major versions. Full changelogs are linked per release at https://github.com/metabase/metabase/releases but individual diff details were not included in the provided changelog text.",
   "answers": {
-    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license.",
-    "Is the project actively maintained?": "Yes — multiple releases across several branches published on May 7, 2025.",
-    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud (managed cloud) is available at metabase.com.",
-    "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition.",
-    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, BigQuery, Snowflake, Redshift, MongoDB, Presto, Druid, Oracle, Spark SQL, Vertica, and more via drivers."
+    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license",
+    "Is the project actively maintained?": "Yes — multiple patch releases across several version branches as recently as May 14, 2025",
+    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud (managed cloud) is available at metabase.com",
+    "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition",
+    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, BigQuery, Snowflake, Redshift, SQLite, MongoDB, Druid, Oracle, Presto/Trino, Spark SQL, and more via drivers"
   },
   "breaking_changes": false,
   "breaking_excerpts": [],
@@ -60,23 +60,9 @@
       "features": {}
     },
     {
-      "name": "Looker Studio",
-      "url": "https://lookerstudio.google.com",
-      "review": "Looker Studio is free and easy to use with Google ecosystem data sources, but is closed-source, cloud-only, and less capable for complex multi-source BI compared to Metabase.",
-      "source": "llm_only",
-      "features": {
-        "open_source": false,
-        "self_hosted": false,
-        "cloud_hosted": true,
-        "no_sql_required": true,
-        "free_tier": true,
-        "sso_support": true
-      }
-    },
-    {
       "name": "Tableau",
       "url": "https://www.tableau.com",
-      "review": "Tableau offers far more advanced visualization and analytics capabilities than Metabase, but is expensive, proprietary, and has no meaningful free tier for production use.",
+      "review": "Tableau offers more advanced visualizations and enterprise features but is a costly proprietary solution compared to Metabase's open-source model.",
       "source": "llm_only",
       "features": {
         "open_source": false,
@@ -84,10 +70,24 @@
         "cloud_hosted": true,
         "no_sql_required": true,
         "free_tier": false,
-        "sso_support": true
+        "SSO_support": true
+      }
+    },
+    {
+      "name": "Lightdash",
+      "url": "https://www.lightdash.com",
+      "review": "Lightdash integrates natively with dbt for a metrics-as-code workflow, making it more developer-centric than Metabase's self-service business-user focus.",
+      "source": "llm_only",
+      "features": {
+        "open_source": true,
+        "self_hosted": true,
+        "cloud_hosted": true,
+        "no_sql_required": true,
+        "free_tier": true,
+        "SSO_support": true
       }
     }
   ],
-  "run_at": "2026-05-11T09:13:49.769855+00:00",
+  "run_at": "2026-05-18T09:16:50.202448+00:00",
   "project_slug": "metabase"
 }
