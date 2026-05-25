@@ -10,12 +10,12 @@
     "self-hosted",
     "documents"
   ],
-  "summary": "Cabinet v0.4.3 (released 2026-04-30) is the latest stable release, fixing native module loading in signed macOS DMG builds. The landmark v0.4.0 release (433 commits since v0.3.4) introduced a multi-provider AI runtime supporting 8 CLI providers (Claude, Codex, Gemini, etc.), an installable Skills system, terminal mode with PTY adapters, a rebuilt Tasks Board v2 with drag-and-drop, and a full Cmd+K search palette. The project also added MIT licensing, anonymous opt-out telemetry, and numerous UX/accessibility improvements. See release notes at https://github.com/hilash/cabinet.",
+  "summary": "Cabinet v0.4.3 (released 2026-04-30) is the latest stable release, fixing a DMG signing regression present since v0.3.4 by correcting hardened-runtime entitlements for native modules. The landmark v0.4.0 release (433 commits) introduced a Skills system (installable agent skills in Anthropic format), a multi-provider BYOAI runtime supporting 8 CLI providers (Claude, Codex, Gemini, etc.), persistent terminal/PTY mode, a rebuilt Tasks Board with drag-and-drop, and a Cmd+K search palette backed by FlexSearch. The project also added MIT licensing, anonymous opt-out telemetry, and numerous UX and accessibility improvements. See the full changelog at https://github.com/hilash/cabinet.",
   "answers": {
     "What is the current license?": "MIT (added in v0.4.0)",
-    "Is the project actively maintained?": "Yes — multiple releases in April 2026, including several patch releases on 2026-04-30",
-    "Does it support user authentication?": "No explicit user authentication system mentioned; legal/ToS acceptance flow present but no login/auth described",
-    "Is there a Docker image available?": "No — distribution is via macOS DMG and npm CLI (cabinetai)"
+    "Is the project actively maintained?": "Yes — multiple releases in April 2026, including several same-day patch releases",
+    "Does it support user authentication?": "Not explicitly mentioned; a legal/disclaimer acceptance flow is present, but no user auth system is described",
+    "Is there a Docker image available?": "Not mentioned in the changelog"
   },
   "breaking_changes": false,
   "breaking_excerpts": [],
@@ -23,74 +23,74 @@
     {
       "name": "Paperless-ngx",
       "url": "https://github.com/paperless-ngx/paperless-ngx",
-      "review": "Paperless-ngx offers far more advanced document management with OCR and tagging but is significantly heavier and more complex to set up than Cabinet.",
+      "review": "Paperless-ngx offers far more powerful document indexing and OCR capabilities but is significantly heavier and more complex to set up than Cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": true,
         "full_text_search": true,
-        "free_tier": true,
-        "cloud_hosted": false
+        "tag_organization": true,
+        "lightweight": false
       }
     },
     {
       "name": "Teedy",
-      "url": "https://teedy.io",
-      "review": "Teedy provides a more feature-rich document management system with workflows and versioning, but requires more resources and configuration compared to Cabinet's lightweight approach.",
+      "url": "https://github.com/sismics/docs",
+      "review": "Teedy provides a more feature-rich document management system with user roles and workflows, but at the cost of greater resource consumption compared to Cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": true,
         "full_text_search": true,
-        "free_tier": true,
-        "cloud_hosted": false
+        "tag_organization": true,
+        "lightweight": false
+      }
+    },
+    {
+      "name": "Filestash",
+      "url": "https://github.com/mickael-kerjean/filestash",
+      "review": "Filestash excels as a universal file browser supporting many storage backends, but lacks the document-centric organization features that Cabinet focuses on.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": false,
+        "full_text_search": false,
+        "tag_organization": false,
+        "lightweight": true
+      }
+    },
+    {
+      "name": "Docspell",
+      "url": "https://github.com/eikek/docspell",
+      "review": "Docspell offers robust automated document processing and tagging with OCR, making it more powerful but considerably harder to configure than Cabinet.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": true,
+        "full_text_search": true,
+        "tag_organization": true,
+        "lightweight": false
       }
     },
     {
       "name": "Nextcloud",
       "url": "https://nextcloud.com",
-      "review": "Nextcloud is a comprehensive self-hosted cloud platform covering files and much more, but is overkill if you only need a simple document cabinet.",
+      "review": "Nextcloud is a comprehensive cloud platform that includes file management and document handling, but it is far more expansive and resource-intensive than the minimal footprint Cabinet aims for.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": false,
         "full_text_search": true,
-        "free_tier": true,
-        "cloud_hosted": true
-      }
-    },
-    {
-      "name": "Docspell",
-      "url": "https://docspell.org",
-      "review": "Docspell excels at automated document organization with OCR and metadata extraction, but has a steeper learning curve and heavier stack than Cabinet.",
-      "source": "llm_only",
-      "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": true,
-        "full_text_search": true,
-        "free_tier": true,
-        "cloud_hosted": false
-      }
-    },
-    {
-      "name": "Mayan EDMS",
-      "url": "https://www.mayan-edms.com",
-      "review": "Mayan EDMS is an enterprise-grade document management system with extensive features, making it far more powerful but considerably more complex than the lightweight Cabinet project.",
-      "source": "llm_only",
-      "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": true,
-        "full_text_search": true,
-        "free_tier": true,
-        "cloud_hosted": false
+        "tag_organization": true,
+        "lightweight": false
       }
     }
   ],
-  "run_at": "2026-05-11T09:13:29.535142+00:00",
+  "run_at": "2026-05-18T09:16:29.386758+00:00",
   "project_slug": "cabinet"
 }

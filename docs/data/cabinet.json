@@ -10,87 +10,91 @@
     "self-hosted",
     "documents"
   ],
-  "summary": "Cabinet v0.4.3 (released 2026-04-30) is the latest stable release, fixing a DMG signing regression present since v0.3.4 by correcting hardened-runtime entitlements for native modules. The landmark v0.4.0 release (433 commits) introduced a Skills system (installable agent skills in Anthropic format), a multi-provider BYOAI runtime supporting 8 CLI providers (Claude, Codex, Gemini, etc.), persistent terminal/PTY mode, a rebuilt Tasks Board with drag-and-drop, and a Cmd+K search palette backed by FlexSearch. The project also added MIT licensing, anonymous opt-out telemetry, and numerous UX and accessibility improvements. See the full changelog at https://github.com/hilash/cabinet.",
+  "summary": "Cabinet v0.4.4 (2026-05-23) is the largest release since v0.4.0 (169 commits), introducing Rooms (isolated workspaces), full internationalization across 40 locales with RTL support, an Integrations Hub for Slack/Discord/Google over MCP, and a mobile-responsive layout. Prior releases in the v0.4.x line (all 2026-04-30) added a Skills system, multi-provider BYOAI runtime (8 CLI providers including Claude, Codex, Gemini), a terminal mode, and Tasks Board v2. v0.4.0 also introduced the MIT license. A breaking Rooms migration in v0.4.4 restructures the data directory layout, though existing installs migrate automatically with a backup. See releases at https://github.com/hilash/cabinet.",
   "answers": {
     "What is the current license?": "MIT (added in v0.4.0)",
-    "Is the project actively maintained?": "Yes — multiple releases in April 2026, including several same-day patch releases",
-    "Does it support user authentication?": "Not explicitly mentioned; a legal/disclaimer acceptance flow is present, but no user auth system is described",
+    "Is the project actively maintained?": "Yes — multiple releases in April–May 2026 with active community contributions",
+    "Does it support user authentication?": "No explicit user authentication system mentioned; onboarding captures name/email with consent, but no auth layer described",
     "Is there a Docker image available?": "Not mentioned in the changelog"
   },
-  "breaking_changes": false,
-  "breaking_excerpts": [],
+  "breaking_changes": true,
+  "breaking_excerpts": [
+    "Rooms migration (v0.4.4): data/ is now a neutral 'home' container and each room is a top-level cabinet; the data root is no longer a working cabinet. Existing installs migrate automatically (data is backed up first).",
+    "Removed the status-bar page-scoped AI edit composer and the redundant task-page back buttons in favor of sidebar navigation (v0.4.4).",
+    "cabinetai CLI refuses to bootstrap in $HOME or / and recommends ~/Documents/Cabinet (v0.4.4)."
+  ],
   "alternatives": [
     {
       "name": "Paperless-ngx",
       "url": "https://github.com/paperless-ngx/paperless-ngx",
-      "review": "Paperless-ngx offers far more powerful document indexing and OCR capabilities but is significantly heavier and more complex to set up than Cabinet.",
+      "review": "Paperless-ngx offers much more powerful OCR, tagging, and document indexing than Cabinet but is heavier to self-host and configure.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": true,
         "full_text_search": true,
-        "tag_organization": true,
-        "lightweight": false
+        "lightweight": false,
+        "cloud_hosted": false
+      }
+    },
+    {
+      "name": "Docspell",
+      "url": "https://docspell.org",
+      "review": "Docspell provides robust document processing and metadata extraction but requires more infrastructure setup compared to Cabinet's lightweight approach.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": true,
+        "full_text_search": true,
+        "lightweight": false,
+        "cloud_hosted": false
       }
     },
     {
       "name": "Teedy",
-      "url": "https://github.com/sismics/docs",
-      "review": "Teedy provides a more feature-rich document management system with user roles and workflows, but at the cost of greater resource consumption compared to Cabinet.",
+      "url": "https://teedy.io",
+      "review": "Teedy is a feature-rich document management system with workflow and user management, making it more suitable for teams but heavier than Cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": true,
         "full_text_search": true,
-        "tag_organization": true,
-        "lightweight": false
+        "lightweight": false,
+        "cloud_hosted": false
+      }
+    },
+    {
+      "name": "Nextcloud Files",
+      "url": "https://nextcloud.com",
+      "review": "Nextcloud offers far broader functionality including collaboration and apps but is significantly heavier and more complex to run than Cabinet.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": false,
+        "full_text_search": true,
+        "lightweight": false,
+        "cloud_hosted": true
       }
     },
     {
       "name": "Filestash",
-      "url": "https://github.com/mickael-kerjean/filestash",
-      "review": "Filestash excels as a universal file browser supporting many storage backends, but lacks the document-centric organization features that Cabinet focuses on.",
+      "url": "https://www.filestash.app",
+      "review": "Filestash is similarly lightweight and focused on file browsing across multiple storage backends, but lacks the document-management and tagging features of Cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": false,
         "full_text_search": false,
-        "tag_organization": false,
-        "lightweight": true
-      }
-    },
-    {
-      "name": "Docspell",
-      "url": "https://github.com/eikek/docspell",
-      "review": "Docspell offers robust automated document processing and tagging with OCR, making it more powerful but considerably harder to configure than Cabinet.",
-      "source": "llm_only",
-      "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": true,
-        "full_text_search": true,
-        "tag_organization": true,
-        "lightweight": false
-      }
-    },
-    {
-      "name": "Nextcloud",
-      "url": "https://nextcloud.com",
-      "review": "Nextcloud is a comprehensive cloud platform that includes file management and document handling, but it is far more expansive and resource-intensive than the minimal footprint Cabinet aims for.",
-      "source": "llm_only",
-      "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": false,
-        "full_text_search": true,
-        "tag_organization": true,
-        "lightweight": false
+        "lightweight": true,
+        "cloud_hosted": false
       }
     }
   ],
-  "run_at": "2026-05-18T09:16:29.386758+00:00",
+  "run_at": "2026-05-25T09:24:56.107210+00:00",
   "project_slug": "cabinet"
 }
