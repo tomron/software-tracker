@@ -15,18 +15,18 @@
     "self-hosted",
     "messaging"
   ],
-  "summary": "ntfy v2.23.0 (released 2026-05-18, https://github.com/binwiederhier/ntfy/releases/tag/v2.23.0) is the latest release, adding per-visitor topic creation rate limits to mitigate topic enumeration/squatting attacks and fixing a same-origin script execution vulnerability (GHSA-j8hr-p342-xrmh) in the web app's publish dialog. Recent releases (v2.19–v2.22) have focused on self-hosting scalability improvements including S3-compatible attachment storage, PostgreSQL read replica support, and several security fixes (SSRF via web push endpoint, GHSA-w9hq-5jg7-q4j7). Email notification now requires address verification via smtp-sender-verify due to abuse on ntfy.sh causing AWS SES suspension.",
+  "summary": "ntfy v2.23.0 (released 2026-05-18, https://github.com/binwiederhier/ntfy/releases/tag/v2.23.0) is the latest release, adding per-visitor topic creation rate limiting to mitigate topic enumeration/squatting attacks and fixing a security issue (GHSA-j8hr-p342-xrmh) in the web app's file preview. Recent releases (v2.19.0–v2.22.0) significantly improved self-hosting scalability with PostgreSQL read replica support, S3-compatible attachment storage, and email verification for notification recipients. Security patches addressed SSRF (GHSA-w9hq-5jg7-q4j7) and web push race conditions, making this a security- and infrastructure-focused release cycle.",
   "answers": {
-    "What is the current license?": "Apache 2.0 (server) and GPL-2.0 (client); check repository for exact dual-license details",
+    "What is the current license?": "Apache 2.0 (server) and GPL 2.0 (client) — dual-licensed; check repository for exact terms",
     "Is the project actively maintained?": "Yes — multiple releases in 2026, most recently v2.23.0 on 2026-05-18",
-    "Does it support authentication and access control?": "Yes — access tokens, user accounts, per-topic ACLs, and rate limiting are supported",
-    "Is there a hosted cloud version available?": "Yes — ntfy.sh is the official hosted instance"
+    "Does it support authentication and access control?": "Yes — access tokens, access control lists, and per-visitor rate limits are supported",
+    "Is there a hosted cloud version available?": "Yes — hosted at https://ntfy.sh"
   },
   "breaking_changes": true,
   "breaking_excerpts": [
-    "v2.20.0: ntfy takes full control of attachment-cache-dir/S3 bucket — files matching message ID format (^[A-Za-z0-9]{12}$) with no DB entries will be deleted on startup. Do not share this directory with other applications.",
-    "v2.21.0: smtp-sender-verify flag introduced; ntfy.sh now requires verified email addresses before sending email notifications due to AWS SES account suspension from abuse.",
-    "v2.23.0: stacktrace-js, stacktrace-gps, humanize-duration, and js-base64 removed from the web app dependency tree."
+    "v2.20.0: ntfy will take full control of the attachment-cache-dir or S3 bucket — files matching the message ID format (^[A-Za-z0-9]{12}$) with no database entries will be deleted. Do not reuse this directory for other purposes.",
+    "v2.21.0: smtp-sender-verify flag introduced; ntfy.sh now requires email address verification before sending email notifications due to AWS SES suspension.",
+    "v2.23.0: Per-visitor topic creation rate limits (visitor-topic-creation-limit-burst/replenish) added by default (100 burst / 1m replenish), which may affect high-volume automated topic creation workflows."
   ],
   "alternatives": [
     {
@@ -46,46 +46,46 @@
     {
       "name": "Apprise",
       "url": "https://github.com/caronc/apprise",
-      "review": "Apprise is a powerful multi-platform notification library supporting 80+ services but is a library/CLI tool rather than a standalone server with a pub-sub model like ntfy.",
+      "review": "Apprise is a powerful notification library supporting 80+ services but is a library/CLI tool rather than a standalone pub-sub server, requiring more integration work.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "cloud_hosted": false,
         "free_tier": true,
-        "rest_api": false,
-        "mobile_push": true
+        "no_client_app_required": true,
+        "web_push": false
       }
     },
     {
       "name": "Pushbullet",
       "url": "https://www.pushbullet.com",
-      "review": "Pushbullet provides cross-device notifications and file sharing but is a proprietary cloud service with usage limits and no self-hosting capability unlike ntfy.",
+      "review": "Pushbullet provides cross-device notifications and file sharing but is a proprietary cloud service with a restrictive free tier and limited scripting API compared to ntfy.",
       "source": "llm_only",
       "features": {
         "self_hosted": false,
         "open_source": false,
         "cloud_hosted": true,
         "free_tier": true,
-        "rest_api": true,
-        "mobile_push": true
+        "no_client_app_required": false,
+        "web_push": true
       }
     },
     {
-      "name": "Ntopng Alerts / Alertmanager",
-      "url": "https://github.com/prometheus/alertmanager",
-      "review": "Alertmanager excels at routing and deduplicating alerts from Prometheus but is focused on infrastructure monitoring workflows rather than general-purpose lightweight push notifications like ntfy.",
+      "name": "ntfy.sh (self-hosted vs cloud)",
+      "url": "https://github.com/binwiederhier/ntfy",
+      "review": "UnifiedPush is an open standard for push notifications that can replace proprietary push infrastructure, but requires app-level integration and is not a standalone notification server like ntfy.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "cloud_hosted": false,
         "free_tier": true,
-        "rest_api": true,
-        "mobile_push": false
+        "no_client_app_required": false,
+        "web_push": false
       }
     }
   ],
-  "run_at": "2026-05-25T09:25:40.237010+00:00",
+  "run_at": "2026-06-01T09:54:58.176541+00:00",
   "project_slug": "ntfy"
 }
