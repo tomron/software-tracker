@@ -15,18 +15,18 @@
     "self-hosted",
     "messaging"
   ],
-  "summary": "ntfy v2.24.0 (released 2026-06-04, https://github.com/binwiederhier/ntfy/releases/tag/v2.24.0) is the latest release, introducing an opt-in in-memory ACL cache (`auth-access-cache`) to reduce database read load on topic authorization queries, and fixing a critical case-insensitive ACL topic matching security bug on SQLite (PostgreSQL was unaffected). Recent prior releases (v2.20.0–v2.23.0) added S3-compatible object storage for attachments, verified email recipients (`smtp-sender-verify`), per-visitor topic creation rate limits, and several security fixes including SSRF and same-origin script execution vulnerabilities. The project is actively maintained with frequent releases addressing both self-hosting scalability and security hardening.",
+  "summary": "ntfy v2.24.0 (released 2026-06-04, https://github.com/binwiederhier/ntfy/releases/tag/v2.24.0) is the latest release, introducing an opt-in in-memory ACL cache (`auth-access-cache`) to reduce database load on high-volume self-hosted servers, along with a security fix for case-insensitive ACL topic matching on SQLite (LIKE was matching 'secret' and 'SECRET' interchangeably). Recent versions (v2.20.0–v2.23.0) added S3-compatible attachment storage, email recipient verification (`smtp-sender-verify`), per-visitor topic creation rate limits, and several security fixes including an SSRF fix in web push endpoint handling (GHSA-w9hq-5jg7-q4j7) and a same-origin script execution fix in the publish dialog (GHSA-j8hr-p342-xrmh). The project is actively maintained with frequent releases across 2025–2026.",
   "answers": {
-    "What is the current license?": "Apache 2.0 (server) / GPL 2.0 (client); dual-licensed — check repository for details",
-    "Is the project actively maintained?": "Yes — multiple releases in 2026 with regular bug fixes and features",
-    "Does it support authentication and access control?": "Yes — ACL-based access control with SQLite/PostgreSQL backend, access tokens, and an optional in-memory ACL cache as of v2.24.0",
-    "Is there a hosted cloud version available?": "Yes — ntfy.sh is the official hosted cloud version"
+    "What is the current license?": "Apache 2.0 (based on the ntfy project; not explicitly stated in changelog but documented in the repository)",
+    "Is the project actively maintained?": "Yes — multiple releases in 2025–2026 with regular bug fixes and features",
+    "Does it support authentication and access control?": "Yes — ACL-based topic authorization with both SQLite and PostgreSQL backends, including an in-memory ACL cache as of v2.24.0",
+    "Is there a hosted cloud version available?": "Yes — ntfy.sh is the official hosted instance"
   },
   "breaking_changes": true,
   "breaking_excerpts": [
-    "v2.20.0: ntfy will take full control over the attachment directory or S3 bucket — files matching the message ID format with no database entries will be deleted. Do not reuse the attachment-cache-dir for other purposes.",
-    "v2.21.0: smtp-sender-verify flag introduced requiring email address verification before sending notifications; ntfy.sh's AWS SES account was suspended due to unsolicited emails, making verification mandatory on the hosted instance.",
-    "v2.24.0: Fix case-insensitive ACL topic matching on SQLite — a rule for 'secret' no longer matches requests for 'SECRET'; existing deployments relying on case-insensitive topic matching will see behavior change."
+    "v2.20.0: ntfy will take full control over the attachment-cache-dir or S3 bucket — files matching the message ID format (^[A-Za-z0-9]{12}$) with no database entries will be deleted. Do not reuse the attachment directory for other purposes.",
+    "v2.24.0 (security): Fix case-insensitive ACL topic matching on SQLite — a rule for 'secret' no longer matches requests for 'SECRET'; behavior change for existing SQLite-based ACL configurations.",
+    "v2.21.0: smtp-sender-verify flag added requiring email address verification before sending notifications; ntfy.sh enforces this going forward due to AWS SES suspension."
   ],
   "alternatives": [
     {
@@ -46,46 +46,46 @@
     {
       "name": "Apprise",
       "url": "https://github.com/caronc/apprise",
-      "review": "Apprise is a versatile open-source notification library supporting 80+ services but it is a library/CLI tool rather than a standalone pub-sub server, requiring more integration effort than ntfy.",
+      "review": "Apprise is a powerful open-source notification library supporting 80+ services but is a library/CLI tool rather than a standalone pub-sub server.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "cloud_hosted": false,
         "free_tier": true,
-        "web_push": false,
-        "no_account_required": true
+        "no_account_required": true,
+        "REST_API": true
       }
     },
     {
       "name": "Pushbullet",
       "url": "https://www.pushbullet.com",
-      "review": "Pushbullet provides cross-device notification mirroring and file sharing but is a proprietary cloud service with a limited free tier and no self-hosting option, unlike ntfy.",
+      "review": "Pushbullet provides cross-device notifications and file sharing but is a proprietary cloud service with a limited free tier and no self-hosting.",
       "source": "llm_only",
       "features": {
         "self_hosted": false,
         "open_source": false,
         "cloud_hosted": true,
         "free_tier": true,
-        "web_push": true,
-        "no_account_required": false
+        "no_account_required": false,
+        "REST_API": true
       }
     },
     {
-      "name": "Ntopng Alerts / Alertmanager",
+      "name": "ntopng / Alertmanager (Prometheus)",
       "url": "https://github.com/prometheus/alertmanager",
-      "review": "Alertmanager is purpose-built for routing infrastructure alerts from Prometheus and offers rich grouping and silencing rules, but it is not a general-purpose pub-sub notification service like ntfy.",
+      "review": "Alertmanager excels at routing and deduplicating alerts in monitoring pipelines but is purpose-built for metrics alerting rather than general-purpose push notifications.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "cloud_hosted": false,
         "free_tier": true,
-        "web_push": false,
-        "no_account_required": true
+        "no_account_required": true,
+        "REST_API": true
       }
     }
   ],
-  "run_at": "2026-06-15T10:12:23.137151+00:00",
+  "run_at": "2026-06-22T10:05:52.167028+00:00",
   "project_slug": "ntfy"
 }
