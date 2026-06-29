@@ -10,11 +10,11 @@
     "self-hosted",
     "documents"
   ],
-  "summary": "Cabinet v0.4.4 (2026-05-23) is the largest release since v0.4.0 (169 commits), introducing Rooms (isolated workspaces), full internationalization across 40 locales with RTL support, an Integrations Hub for Slack/Discord/Google via MCP, and a mobile-responsive layout. v0.4.0 (2026-04-30, 433 commits) added a Skills system, multi-provider AI runtime (BYOAI with 8 CLI providers), terminal mode, and a Tasks Board v2. The project became MIT licensed as of v0.4.0. See release notes at https://github.com/hilash/cabinet.",
+  "summary": "Cabinet v0.4.4 (2026-05-23) is the largest release since v0.4.0 (169 commits), introducing Rooms (isolated workspaces), full internationalization across 40 locales with RTL support, an Integrations Hub (Slack, Discord, Google over MCP), and a mobile-responsive layout. Earlier in the v0.4.x series (all released 2026-04-30), Cabinet gained a Skills system with installable agent skills, a multi-provider BYOAI runtime (8 CLI providers including Claude, Codex, Gemini), a persistent terminal mode, and a redesigned Tasks Board. The project was MIT licensed as of v0.4.0. Full release notes are available at https://github.com/hilash/cabinet.",
   "answers": {
     "What is the current license?": "MIT (added in v0.4.0)",
     "Is the project actively maintained?": "Yes — multiple releases in 2026, most recently v0.4.4 on 2026-05-23",
-    "Does it support user authentication?": "Not explicitly documented in changelog; onboarding captures name/email with consent, but no auth system is described",
+    "Does it support user authentication?": "Not explicitly described; onboarding captures name/email with consent, but no full auth system is mentioned",
     "Is there a Docker image available?": "Not mentioned in the changelog"
   },
   "breaking_changes": true,
@@ -27,74 +27,74 @@
     {
       "name": "Paperless-ngx",
       "url": "https://github.com/paperless-ngx/paperless-ngx",
-      "review": "Paperless-ngx offers far more powerful OCR, tagging, and document indexing than Cabinet but is significantly heavier to self-host and configure.",
+      "review": "Paperless-ngx offers far more powerful OCR, tagging, and document indexing than Cabinet but is significantly heavier to set up and maintain.",
       "source": "llm_only",
       "features": {
-        "self-hosted": true,
-        "open-source": true,
-        "ocr-support": true,
-        "full-text-search": true,
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": true,
+        "full_text_search": true,
         "lightweight": false,
-        "cloud-hosted": false
-      }
-    },
-    {
-      "name": "Docspell",
-      "url": "https://docspell.org",
-      "review": "Docspell provides robust document organization with AI-assisted tagging and multi-user support, but requires more infrastructure than Cabinet's minimal footprint.",
-      "source": "llm_only",
-      "features": {
-        "self-hosted": true,
-        "open-source": true,
-        "ocr-support": true,
-        "full-text-search": true,
-        "lightweight": false,
-        "cloud-hosted": false
+        "mobile_friendly": true
       }
     },
     {
       "name": "Teedy",
-      "url": "https://teedy.io",
-      "review": "Teedy is a feature-rich document management system with workflows and permissions, making it more enterprise-oriented and complex compared to Cabinet's simplicity.",
+      "url": "https://github.com/sismics/docs",
+      "review": "Teedy provides a more feature-rich document management system with user permissions and workflows, but comes with greater resource overhead compared to Cabinet.",
       "source": "llm_only",
       "features": {
-        "self-hosted": true,
-        "open-source": true,
-        "ocr-support": true,
-        "full-text-search": true,
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": true,
+        "full_text_search": true,
         "lightweight": false,
-        "cloud-hosted": false
+        "mobile_friendly": true
       }
     },
     {
-      "name": "Nextcloud Files",
-      "url": "https://nextcloud.com",
-      "review": "Nextcloud Files covers document storage as part of a much broader platform, offering more integrations than Cabinet but with considerably more overhead and complexity.",
+      "name": "Docspell",
+      "url": "https://github.com/eikek/docspell",
+      "review": "Docspell excels at automated document classification and metadata extraction but requires more complex infrastructure compared to Cabinet's lightweight approach.",
       "source": "llm_only",
       "features": {
-        "self-hosted": true,
-        "open-source": true,
-        "ocr-support": false,
-        "full-text-search": true,
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": true,
+        "full_text_search": true,
         "lightweight": false,
-        "cloud-hosted": true
+        "mobile_friendly": false
       }
     },
     {
       "name": "Filestash",
-      "url": "https://www.filestash.app",
-      "review": "Filestash is similarly lightweight and focuses on browsing files across multiple backends, but lacks dedicated document management and tagging features found in Cabinet.",
+      "url": "https://github.com/mickael-kerjean/filestash",
+      "review": "Filestash is similarly lightweight and focused on file browsing with multi-backend support, but lacks dedicated document management and organization features found in Cabinet.",
       "source": "llm_only",
       "features": {
-        "self-hosted": true,
-        "open-source": true,
-        "ocr-support": false,
-        "full-text-search": false,
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": false,
+        "full_text_search": false,
         "lightweight": true,
-        "cloud-hosted": false
+        "mobile_friendly": true
+      }
+    },
+    {
+      "name": "Nextcloud",
+      "url": "https://nextcloud.com",
+      "review": "Nextcloud offers a comprehensive file and document management ecosystem with plugins, but is a much heavier platform than Cabinet and requires considerably more resources.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": false,
+        "full_text_search": true,
+        "lightweight": false,
+        "mobile_friendly": true
       }
     }
   ],
-  "run_at": "2026-06-22T10:05:06.301714+00:00",
+  "run_at": "2026-06-29T09:39:59.164201+00:00",
   "project_slug": "cabinet"
 }
