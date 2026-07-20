@@ -10,11 +10,11 @@
     "self-hosted",
     "documents"
   ],
-  "summary": "Cabinet v0.5.0 (released 2026-07-04) is a major release spanning 238 commits. Highlights include Connect Knowledge (read-only access to Google Drive, iCloud, OneDrive/SharePoint, and Dropbox per room), an expanded 52-connector Integrations Hub (Slack, Google, Microsoft 365, Snowflake, LinkedIn, Discord, Telegram), and agent Channels with @mention support. Other notable additions include a Telegram remote-control gateway, clean-path routing replacing hash-based URLs, PBKDF2 password hashing with rate limiting, and a conversation run timeout raised to 1 hour. See the full release notes at https://github.com/hilash/cabinet.",
+  "summary": "Cabinet v0.5.0 (released 2026-07-04) is a major release with 238 commits, introducing Connect Knowledge for read-only cloud drive integration (Google Drive, iCloud, OneDrive/SharePoint, Dropbox), a 52-connector Integrations Hub (Slack, Google, Microsoft 365, Snowflake, LinkedIn, Discord, Telegram), and per-room agent Channels. The release also includes a Telegram remote-control gateway, a 'Manila Arc' borderless UI redesign, clean-path routing replacing hash routing, improved auth with PBKDF2 password hashing and login rate-limiting, and numerous editor, task, and Windows fixes. See the full release notes at https://github.com/hilash/cabinet.",
   "answers": {
     "What is the current license?": "Not specified in the changelog",
-    "Is the project actively maintained?": "Yes — v0.5.0 released 2026-07-04 with 238 commits and active contributor activity",
-    "Does it support user authentication?": "Yes — PBKDF2 password hashing with per-install salt, login rate-limiting, KB_PASSWORD gate, and mobile/reverse-proxy support",
+    "Is the project actively maintained?": "Yes — v0.5.0 released 2026-07-04 with 238 commits and multiple contributors",
+    "Does it support user authentication?": "Yes — PBKDF2 password hashing with per-install salt, login rate-limiting, and KB_PASSWORD gate for daemon auth",
     "Is there a Docker image available?": "Not mentioned in the changelog"
   },
   "breaking_changes": true,
@@ -26,7 +26,7 @@
     {
       "name": "Paperless-ngx",
       "url": "https://github.com/paperless-ngx/paperless-ngx",
-      "review": "Paperless-ngx offers far more advanced document management with OCR and tagging but is significantly heavier and more complex to self-host than Cabinet.",
+      "review": "Paperless-ngx offers far more powerful document management with OCR and tagging but is significantly heavier and more complex to self-host than Cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
@@ -34,13 +34,13 @@
         "ocr_support": true,
         "full_text_search": true,
         "lightweight": false,
-        "cloud_hosted": false
+        "free_tier": true
       }
     },
     {
       "name": "Teedy",
-      "url": "https://teedy.io",
-      "review": "Teedy provides a more feature-rich document management system with workflows and permissions, but requires more resources and setup compared to Cabinet.",
+      "url": "https://github.com/sismics/docs",
+      "review": "Teedy provides a more feature-rich document management system with workflows and ACL controls, but comes with greater resource overhead compared to Cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
@@ -48,27 +48,13 @@
         "ocr_support": true,
         "full_text_search": true,
         "lightweight": false,
-        "cloud_hosted": false
-      }
-    },
-    {
-      "name": "Nextcloud",
-      "url": "https://nextcloud.com",
-      "review": "Nextcloud is a comprehensive self-hosted cloud platform that far exceeds Cabinet in features but introduces significant overhead for users who only need simple file management.",
-      "source": "llm_only",
-      "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": false,
-        "full_text_search": true,
-        "lightweight": false,
-        "cloud_hosted": true
+        "free_tier": true
       }
     },
     {
       "name": "Docspell",
-      "url": "https://docspell.org",
-      "review": "Docspell focuses on automatic document organization and OCR processing but has a steeper learning curve and heavier infrastructure requirements than Cabinet.",
+      "url": "https://github.com/eikek/docspell",
+      "review": "Docspell excels at automatic document organization and tagging via AI/OCR pipelines but requires more infrastructure setup than Cabinet's simpler approach.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
@@ -76,24 +62,38 @@
         "ocr_support": true,
         "full_text_search": true,
         "lightweight": false,
-        "cloud_hosted": false
+        "free_tier": true
       }
     },
     {
-      "name": "FileRun",
-      "url": "https://filerun.com",
-      "review": "FileRun offers a polished file manager with cloud sync and sharing features, but its premium tiers and closed-source nature contrast with Cabinet's lightweight open approach.",
+      "name": "Nextcloud Files",
+      "url": "https://nextcloud.com",
+      "review": "Nextcloud Files is a broader file management and collaboration platform with extensive app integrations, making it much heavier but more versatile than Cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
-        "open_source": false,
+        "open_source": true,
         "ocr_support": false,
         "full_text_search": true,
+        "lightweight": false,
+        "free_tier": true
+      }
+    },
+    {
+      "name": "Filestash",
+      "url": "https://github.com/mickael-kerjean/filestash",
+      "review": "Filestash is similarly lightweight and self-hosted but focuses on being a universal file browser across storage backends rather than a dedicated document manager.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": false,
+        "full_text_search": false,
         "lightweight": true,
-        "cloud_hosted": false
+        "free_tier": true
       }
     }
   ],
-  "run_at": "2026-07-13T11:08:57.953354+00:00",
+  "run_at": "2026-07-20T10:50:21.853444+00:00",
   "project_slug": "cabinet"
 }
