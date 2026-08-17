@@ -20,13 +20,13 @@
     "self-hosted",
     "dashboards"
   ],
-  "summary": "Metabase is actively maintained with frequent patch releases across multiple supported version branches. The latest release is v0.63.2 (open source) / v1.63.2 (enterprise), released on July 29, 2025. Multiple version lines (58.x, 59.x, 60.x, 61.x, 62.x, 63.x) are receiving concurrent patch updates, indicating a mature, actively supported project. Detailed changelogs are linked per release at https://github.com/metabase/metabase/releases.",
+  "summary": "Metabase is actively releasing frequent patch updates across multiple supported branches simultaneously. The latest release is v0.63.2 (Open Source) / v1.63.2 (Enterprise), released on July 29, 2025. Multiple older branches (58.x through 62.x) are also receiving concurrent patch updates, indicating strong long-term support policies. Full changelogs are available at https://github.com/metabase/metabase/releases but individual release notes in the scraped content are sparse, linking only to 'Full Changelog' diffs.",
   "answers": {
-    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license. See https://www.metabase.com/license/",
-    "Is the project actively maintained?": "Yes — multiple patch releases across 6 version branches were published on July 28–29, 2025.",
-    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud is available at https://www.metabase.com (managed cloud offering).",
-    "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition.",
-    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, BigQuery, Snowflake, Redshift, Athena, Spark SQL, MongoDB, Presto, Druid, Oracle, Vertica, and more via drivers."
+    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license",
+    "Is the project actively maintained?": "Yes — multiple releases across several branches on July 28–29, 2025, with 48.6k GitHub stars",
+    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud (managed cloud) is available at metabase.com",
+    "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition",
+    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, MongoDB, BigQuery, Snowflake, Redshift, Presto, Druid, Oracle, Vertica, SparkSQL, and more via drivers"
   },
   "breaking_changes": false,
   "breaking_excerpts": [],
@@ -62,7 +62,7 @@
     {
       "name": "Tableau",
       "url": "https://www.tableau.com",
-      "review": "Offers far more advanced visualization and analytics capabilities than Metabase but is proprietary, expensive, and not self-hostable in the open-source sense.",
+      "review": "Tableau offers superior data visualization depth and enterprise features but is proprietary, expensive, and not self-hostable in an open-source sense.",
       "source": "llm_only",
       "features": {
         "open_source": false,
@@ -76,7 +76,7 @@
     {
       "name": "Lightdash",
       "url": "https://www.lightdash.com",
-      "review": "Tightly integrates with dbt for a metrics-layer-first approach, making it more suitable for dbt-heavy teams but less general-purpose than Metabase.",
+      "review": "Lightdash is open-source and integrates tightly with dbt for a metrics-layer approach, but has a narrower ecosystem and smaller community compared to Metabase.",
       "source": "llm_only",
       "features": {
         "open_source": true,
@@ -88,6 +88,6 @@
       }
     }
   ],
-  "run_at": "2026-08-03T11:20:42.324134+00:00",
+  "run_at": "2026-08-10T09:18:13.477736+00:00",
   "project_slug": "metabase"
 }
