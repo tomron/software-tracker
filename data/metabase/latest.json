@@ -20,13 +20,13 @@
     "self-hosted",
     "dashboards"
   ],
-  "summary": "Metabase is actively releasing frequent patch updates across multiple supported version branches simultaneously. The latest release is v0.63.2 (open source) / v1.63.2 (enterprise), released on July 29, 2025. Multiple older branches (58.x through 63.x) are receiving concurrent patch releases, indicating strong long-term support practices. Full changelogs are available at https://github.com/metabase/metabase/releases but detailed per-release notes were not included in the provided changelog text.",
+  "summary": "Metabase is actively maintained with frequent patch releases across multiple supported branches. The latest release is v0.63.14 (Open Source) / v1.63.14 (Enterprise), released on August 20, 2025. Multiple branches (v58–v63) are receiving concurrent patch updates, indicating a robust LTS-style support model. Full changelogs are available at https://github.com/metabase/metabase/releases.",
   "answers": {
     "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license.",
-    "Is the project actively maintained?": "Yes — multiple patch releases across several version branches were published on July 28–29, 2025.",
-    "Is there a cloud-hosted version available?": "Yes — Metabase offers a managed cloud (Metabase Cloud) at https://www.metabase.com.",
+    "Is the project actively maintained?": "Yes — multiple releases across several branches published in August 2025, with 48.9k+ GitHub stars.",
+    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud (managed cloud) is available at https://www.metabase.com.",
     "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition.",
-    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, BigQuery, Snowflake, Redshift, SQLite, MongoDB, Druid, Oracle, Presto/Trino, Spark SQL, and more via drivers."
+    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, Oracle, BigQuery, Snowflake, Redshift, MongoDB, Presto, Druid, SparkSQL, and more (via drivers)."
   },
   "breaking_changes": false,
   "breaking_excerpts": [],
@@ -62,7 +62,7 @@
     {
       "name": "Tableau",
       "url": "https://www.tableau.com",
-      "review": "Tableau offers best-in-class visualizations and enterprise features but is proprietary, expensive, and lacks Metabase's simplicity for small teams.",
+      "review": "Tableau offers best-in-class visualizations and enterprise features but is significantly more expensive and not open source unlike Metabase.",
       "source": "llm_only",
       "features": {
         "open_source": false,
@@ -76,7 +76,7 @@
     {
       "name": "Lightdash",
       "url": "https://www.lightdash.com",
-      "review": "Lightdash integrates tightly with dbt for a metrics-first workflow, making it ideal for dbt-heavy teams but less general-purpose than Metabase.",
+      "review": "Lightdash integrates tightly with dbt for a metrics-first approach and is open source, but has a smaller ecosystem and community than Metabase.",
       "source": "llm_only",
       "features": {
         "open_source": true,
@@ -88,6 +88,6 @@
       }
     }
   ],
-  "run_at": "2026-08-17T08:40:59.238346+00:00",
+  "run_at": "2026-08-24T08:45:17.366336+00:00",
   "project_slug": "metabase"
 }
