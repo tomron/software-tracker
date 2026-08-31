@@ -15,18 +15,18 @@
     "self-hosted",
     "messaging"
   ],
-  "summary": "ntfy v2.27.0 (released 2026-08-04, https://github.com/binwiederhier/ntfy/releases/tag/v2.27.0) is the latest release, adding email-based login, hardening the message templating engine against memory abuse, and graduating PostgreSQL support out of experimental status. Recent releases (v2.26.x, v2.25.0) addressed CPU denial-of-service via message templates, added password reset via magic links, configurable date/time formats in the web app, and an abuse ban-feed for fail2ban integration. Internal refactoring is underway in preparation for horizontal clustering of ntfy nodes. Self-hosters should note that cache databases older than v1.10.0 (pre-November 2021) can no longer be migrated automatically.",
+  "summary": "ntfy v2.28.0 (2026-08-27) is a hardening release that caps cache replay at 10 MB per topic, limits message titles to 1 KB and tags to 512 bytes, and applies the visitor bandwidth limit to poll-based cache replays. v2.27.0 (2026-08-04) added email-based login, hardened message templating against memory abuse, and promoted PostgreSQL support out of experimental status. v2.26.x addressed a CPU denial-of-service via message templates, added configurable date/time formats in the web app, and introduced an abuse ban-feed mechanism for self-hosters. Full release notes are available at https://github.com/binwiederhier/ntfy/releases.",
   "answers": {
-    "What is the current license?": "Apache 2.0 (server) and GPL 2.0 (client) — dual-licensed; check repository for exact terms",
-    "Is the project actively maintained?": "Yes — multiple releases in 2026, most recently v2.27.0 on 2026-08-04",
-    "Does it support authentication and access control?": "Yes — username/password, access tokens, email-based login, per-topic ACLs, and configurable default access policies",
-    "Is there a hosted cloud version available?": "Yes — ntfy.sh is the official hosted cloud instance"
+    "What is the current license?": "Apache 2.0 (server) and GPL (clients); see repository for details",
+    "Is the project actively maintained?": "Yes — multiple releases in 2026, most recently v2.28.0 on 2026-08-27",
+    "Does it support authentication and access control?": "Yes — username/password, access tokens, email-based login, and topic-level access control",
+    "Is there a hosted cloud version available?": "Yes — ntfy.sh is the official hosted cloud service"
   },
   "breaking_changes": true,
   "breaking_excerpts": [
-    "Message cache databases from ntfy older than v1.10.0 (November 2021) can no longer be migrated; upgrade via an older ntfy version first, or delete the cache database.",
-    "X-Email: yes now requires being logged in with a verified primary email address; previously it could be used without email verification enabled.",
-    "Access tokens, IDs, and magic-link tokens are now generated with crypto/rand instead of a clock-seeded PRNG, which may affect integrations relying on token predictability."
+    "Message titles are now limited to 1 KB and all tags combined to 512 bytes; larger requests are rejected with HTTP 400 (error codes 40057/40058).",
+    "visitor-attachment-daily-bandwidth-limit now also covers poll-based cache replays; polls beyond the budget are rejected with HTTP 429 (error code 42905). Operators serving both attachments and heavy pollers may need to raise the limit.",
+    "Message cache databases from ntfy older than v1.10.0 (November 2021) can no longer be migrated; upgrade via an older ntfy version first, or delete the cache database."
   ],
   "alternatives": [
     {
@@ -46,46 +46,46 @@
     {
       "name": "Apprise",
       "url": "https://github.com/caronc/apprise",
-      "review": "Apprise is a versatile notification library supporting 80+ services and is open-source, but it is a library/CLI tool rather than a standalone pub-sub server like ntfy.",
+      "review": "Apprise is a versatile open-source notification library supporting 80+ services but functions as a library/CLI tool rather than a standalone pub-sub server like ntfy.",
       "source": "llm_only",
       "features": {
         "self-hosted": true,
         "open-source": true,
         "cloud-hosted": false,
         "free-tier": true,
-        "REST-API": true,
-        "web-push": false
+        "android-app": false,
+        "no-account-required": true
       }
     },
     {
       "name": "Pushbullet",
       "url": "https://www.pushbullet.com",
-      "review": "Pushbullet provides cross-device notifications and file sharing with a polished UX, but it is a closed-source commercial service with a limited free tier and no self-hosting capability.",
+      "review": "Pushbullet provides cross-device notifications with file and link sharing but is a proprietary cloud-only service with a limited free tier, unlike ntfy's fully open and self-hostable approach.",
       "source": "llm_only",
       "features": {
         "self-hosted": false,
         "open-source": false,
         "cloud-hosted": true,
         "free-tier": true,
-        "REST-API": true,
-        "web-push": true
+        "android-app": true,
+        "no-account-required": false
       }
     },
     {
-      "name": "Alertmanager (Prometheus)",
+      "name": "Ntopng / Alertmanager (Prometheus)",
       "url": "https://github.com/prometheus/alertmanager",
-      "review": "Alertmanager is powerful for routing and grouping infrastructure alerts in a self-hosted setup, but it is tightly coupled to the Prometheus ecosystem and far more complex to configure than ntfy for simple script-based notifications.",
+      "review": "Alertmanager is a powerful open-source alerting tool tightly integrated with Prometheus metrics, but it is infrastructure-focused and far more complex to configure compared to ntfy's simple HTTP pub-sub model.",
       "source": "llm_only",
       "features": {
         "self-hosted": true,
         "open-source": true,
         "cloud-hosted": false,
         "free-tier": true,
-        "REST-API": true,
-        "web-push": false
+        "android-app": false,
+        "no-account-required": true
       }
     }
   ],
-  "run_at": "2026-08-24T08:45:52.550409+00:00",
+  "run_at": "2026-08-31T15:51:52.202627+00:00",
   "project_slug": "ntfy"
 }

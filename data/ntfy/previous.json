@@ -15,18 +15,18 @@
     "self-hosted",
     "messaging"
   ],
-  "summary": "ntfy v2.27.0 (released 2026-08-04, https://github.com/binwiederhier/ntfy/releases/tag/v2.27.0) is the latest release, adding email-based login, hardening the message templating engine against memory exhaustion attacks, and promoting PostgreSQL support out of experimental status. v2.26.x added CPU DoS protection for message templates, configurable date/time formats in the web app, and an abuse ban-feed for fail2ban integration. v2.25.0 introduced password reset via emailed magic links, reworked email verification to use durable single-use tokens, and fixed several self-hosting issues including S3-compatible HTTP endpoints and auth-default-access sync topics.",
+  "summary": "ntfy v2.27.0 (released 2026-08-04, https://github.com/binwiederhier/ntfy/releases/tag/v2.27.0) is the latest release, adding email-based login, hardening the message templating engine against memory abuse, and graduating PostgreSQL support out of experimental status. Recent releases (v2.26.x, v2.25.0) addressed CPU denial-of-service via message templates, added password reset via magic links, configurable date/time formats in the web app, and an abuse ban-feed for fail2ban integration. Internal refactoring is underway in preparation for horizontal clustering of ntfy nodes. Self-hosters should note that cache databases older than v1.10.0 (pre-November 2021) can no longer be migrated automatically.",
   "answers": {
-    "What is the current license?": "Apache 2.0 (server) / GPL 2.0 (client libraries) — check repository for exact terms",
-    "Is the project actively maintained?": "Yes — multiple releases in 2026, active bug fixes and feature development",
-    "Does it support authentication and access control?": "Yes — username/password auth, access tokens, email-based login, topic reservations, and configurable default access policies",
-    "Is there a hosted cloud version available?": "Yes — ntfy.sh is the official hosted instance"
+    "What is the current license?": "Apache 2.0 (server) and GPL 2.0 (client) — dual-licensed; check repository for exact terms",
+    "Is the project actively maintained?": "Yes — multiple releases in 2026, most recently v2.27.0 on 2026-08-04",
+    "Does it support authentication and access control?": "Yes — username/password, access tokens, email-based login, per-topic ACLs, and configurable default access policies",
+    "Is there a hosted cloud version available?": "Yes — ntfy.sh is the official hosted cloud instance"
   },
   "breaking_changes": true,
   "breaking_excerpts": [
     "Message cache databases from ntfy older than v1.10.0 (November 2021) can no longer be migrated; upgrade via an older ntfy version first, or delete the cache database.",
-    "X-Email: yes now requires being logged in with a verified primary address; previously it was rejected unless smtp-sender-verify was enabled, changing prior behavior.",
-    "Secrets are now excluded from the config hash served to the web app, which may affect tooling that relied on inspecting that endpoint."
+    "X-Email: yes now requires being logged in with a verified primary email address; previously it could be used without email verification enabled.",
+    "Access tokens, IDs, and magic-link tokens are now generated with crypto/rand instead of a clock-seeded PRNG, which may affect integrations relying on token predictability."
   ],
   "alternatives": [
     {
@@ -46,46 +46,46 @@
     {
       "name": "Apprise",
       "url": "https://github.com/caronc/apprise",
-      "review": "Apprise is a powerful multi-platform notification library supporting dozens of services but is a library/CLI tool rather than a standalone pub-sub server, requiring more integration work than ntfy.",
+      "review": "Apprise is a versatile notification library supporting 80+ services and is open-source, but it is a library/CLI tool rather than a standalone pub-sub server like ntfy.",
       "source": "llm_only",
       "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "cloud_hosted": false,
-        "free_tier": true,
-        "no_account_required": true,
-        "mobile_push": false
+        "self-hosted": true,
+        "open-source": true,
+        "cloud-hosted": false,
+        "free-tier": true,
+        "REST-API": true,
+        "web-push": false
       }
     },
     {
       "name": "Pushbullet",
       "url": "https://www.pushbullet.com",
-      "review": "Pushbullet provides cross-device notifications and file sharing via a polished interface but is a proprietary cloud service with a restrictive free tier and no self-hosting, unlike ntfy.",
+      "review": "Pushbullet provides cross-device notifications and file sharing with a polished UX, but it is a closed-source commercial service with a limited free tier and no self-hosting capability.",
       "source": "llm_only",
       "features": {
-        "self_hosted": false,
-        "open_source": false,
-        "cloud_hosted": true,
-        "free_tier": true,
-        "no_account_required": false,
-        "mobile_push": true
+        "self-hosted": false,
+        "open-source": false,
+        "cloud-hosted": true,
+        "free-tier": true,
+        "REST-API": true,
+        "web-push": true
       }
     },
     {
-      "name": "Ntopng Alerts / Grafana Alerting",
-      "url": "https://grafana.com/docs/grafana/latest/alerting",
-      "review": "Grafana Alerting is a robust alerting system integrated with observability stacks but is heavily tied to metrics dashboards and far more complex to set up than ntfy's simple HTTP pub-sub model.",
+      "name": "Alertmanager (Prometheus)",
+      "url": "https://github.com/prometheus/alertmanager",
+      "review": "Alertmanager is powerful for routing and grouping infrastructure alerts in a self-hosted setup, but it is tightly coupled to the Prometheus ecosystem and far more complex to configure than ntfy for simple script-based notifications.",
       "source": "llm_only",
       "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "cloud_hosted": true,
-        "free_tier": true,
-        "no_account_required": false,
-        "mobile_push": false
+        "self-hosted": true,
+        "open-source": true,
+        "cloud-hosted": false,
+        "free-tier": true,
+        "REST-API": true,
+        "web-push": false
       }
     }
   ],
-  "run_at": "2026-08-17T08:41:30.451006+00:00",
+  "run_at": "2026-08-24T08:45:52.550409+00:00",
   "project_slug": "ntfy"
 }
