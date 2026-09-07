@@ -20,13 +20,13 @@
     "self-hosted",
     "dashboards"
   ],
-  "summary": "Metabase is actively releasing frequent patch updates across multiple supported major versions simultaneously. The latest release is v0.63.15 (open source) / v1.63.15 (enterprise), released on August 26, 2025 (https://github.com/metabase/metabase/releases/tag/v0.63.15). Multiple version branches (v59–v63) are maintained in parallel, each receiving concurrent patch releases, indicating a mature long-term support strategy. Detailed changelogs per release are linked from each release page on GitHub.",
+  "summary": "Metabase is actively maintained with frequent patch releases across multiple supported versions simultaneously. The latest release is v0.63.16 (Open Source) / v1.63.16 (Enterprise), released on September 1, 2025. Multiple version branches (58.x through 63.x) are receiving concurrent patch updates, indicating a robust long-term support strategy. Release notes are available at https://github.com/metabase/metabase/releases, with both Docker images and JAR downloads provided for each edition.",
   "answers": {
-    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license.",
-    "Is the project actively maintained?": "Yes — multiple patch releases across 5 major version branches were published on August 26, 2025.",
-    "Is there a cloud-hosted version available?": "Yes — Metabase offers a managed cloud (Metabase Cloud) at metabase.com.",
-    "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition.",
-    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, BigQuery, Snowflake, Redshift, Athena, MongoDB, SQLite, Presto, Druid, Oracle, Vertica, SparkSQL, and more (varies by edition)."
+    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license (Metabase Commercial License)",
+    "Is the project actively maintained?": "Yes — multiple patch releases across 6 concurrent version branches as recently as September 1, 2025",
+    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud (managed cloud) is available at metabase.com",
+    "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition",
+    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, MongoDB, BigQuery, Snowflake, Redshift, Athena, Druid, Oracle, Presto/Trino, Spark SQL, and more via drivers"
   },
   "breaking_changes": false,
   "breaking_excerpts": [],
@@ -60,23 +60,9 @@
       "features": {}
     },
     {
-      "name": "Looker",
-      "url": "https://looker.com",
-      "review": "Offers a more robust governed data modeling layer via LookML compared to Metabase, but is significantly more expensive and not open source.",
-      "source": "llm_only",
-      "features": {
-        "open_source": false,
-        "self_hosted": false,
-        "cloud_hosted": true,
-        "no_sql_required": true,
-        "free_tier": false,
-        "SSO": true
-      }
-    },
-    {
       "name": "Tableau",
       "url": "https://www.tableau.com",
-      "review": "Provides more advanced and polished data visualization capabilities than Metabase, but comes at a high cost and is a closed-source proprietary solution.",
+      "review": "Tableau offers superior visualization capabilities and enterprise polish, but is proprietary, expensive, and lacks the open-source self-hosted flexibility of Metabase.",
       "source": "llm_only",
       "features": {
         "open_source": false,
@@ -84,10 +70,24 @@
         "cloud_hosted": true,
         "no_sql_required": true,
         "free_tier": false,
-        "SSO": true
+        "SSO_support": true
+      }
+    },
+    {
+      "name": "Lightdash",
+      "url": "https://www.lightdash.com",
+      "review": "Lightdash is a modern open-source alternative tightly integrated with dbt, making it ideal for dbt-heavy teams, but it requires a dbt project as a prerequisite unlike Metabase.",
+      "source": "llm_only",
+      "features": {
+        "open_source": true,
+        "self_hosted": true,
+        "cloud_hosted": true,
+        "no_sql_required": true,
+        "free_tier": true,
+        "SSO_support": true
       }
     }
   ],
-  "run_at": "2026-08-31T15:51:15.176099+00:00",
+  "run_at": "2026-09-07T13:59:18.797088+00:00",
   "project_slug": "metabase"
 }
