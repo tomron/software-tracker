@@ -10,7 +10,7 @@
     "self-hosted",
     "documents"
   ],
-  "summary": "Cabinet v0.5.0 (2026-07-04) is the largest release since v0.4.0, introducing Connect Knowledge for cloud drive integration (Google Drive, iCloud, OneDrive, Dropbox), a 52-connector Integrations Hub (Slack, Google, Microsoft 365, Snowflake, LinkedIn, Discord, Telegram), per-room agent Channels, and a Telegram remote-control gateway. Notable fixes include PBKDF2 password hashing with rate-limiting (auth hardening), Windows installer repairs, and clean-path routing replacing hash-based routing. v0.6.0 introduces a self-update mechanism, with future releases published at https://github.com/cabinetai/cabinet-releases.",
+  "summary": "Cabinet v0.5.0 (2026-07-04) is a major release with 238 commits, introducing Connect Knowledge for cloud drive integration (Google Drive, iCloud, OneDrive, Dropbox), a 52-connector Integrations Hub (Slack, Google, Microsoft 365, Snowflake, LinkedIn, Discord, Telegram), per-room agent Channels, and a Telegram remote-control gateway. Security improvements include PBKDF2 password hashing with per-install salt and login rate-limiting. v0.6.0 introduces a self-update mechanism, with future releases published at https://github.com/cabinetai/cabinet-releases.",
   "answers": {
     "What is the current license?": "Not specified in the changelog",
     "Is the project actively maintained?": "Yes — v0.5.0 released 2026-07-04 with 238 commits, v0.6.0 followed shortly after",
@@ -19,82 +19,82 @@
   },
   "breaking_changes": true,
   "breaking_excerpts": [
-    "Clean-path routing: the app serves clean URLs instead of hash routes across web and Electron. Old hash links resolve via a marker-scan parser, but the canonical form is now path-based.",
-    "Channels on-disk rename: the internal team-chat directory moved from `.slack` to `.channels`, scoped per room.",
-    "v0.6.0 moves the update mechanism to a new updater; future releases are published at https://github.com/cabinetai/cabinet-releases instead of the original repository."
+    "Clean-path routing: the app serves clean URLs instead of hash routes across web and Electron; old hash links resolve via a marker-scan parser but canonical form is now path-based.",
+    "Channels on-disk rename: the internal team-chat directory moved from '.slack' to '.channels', scoped per room.",
+    "v0.6.0 moves the update mechanism to a new location; future releases are published at https://github.com/cabinetai/cabinet-releases instead of the original repository."
   ],
   "alternatives": [
     {
       "name": "Paperless-ngx",
       "url": "https://github.com/paperless-ngx/paperless-ngx",
-      "review": "Paperless-ngx offers far more powerful OCR, tagging, and full-text search than Cabinet but requires more resources and setup complexity.",
+      "review": "Paperless-ngx offers far more advanced document management with OCR, tagging, and full-text search, but is significantly heavier and more complex to self-host than Cabinet.",
       "source": "llm_only",
       "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": true,
-        "full_text_search": true,
-        "free_tier": true,
-        "sso_support": false
+        "self-hosted": true,
+        "open-source": true,
+        "ocr-support": true,
+        "full-text-search": true,
+        "lightweight": false,
+        "cloud-hosted": false
       }
     },
     {
       "name": "Teedy",
       "url": "https://teedy.io",
-      "review": "Teedy is a more feature-rich document management system with workflows and user permissions, but is heavier and more complex to deploy than Cabinet.",
+      "review": "Teedy provides a more feature-rich document management system with workflows and metadata, but requires more resources and setup compared to Cabinet's simplicity.",
       "source": "llm_only",
       "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": true,
-        "full_text_search": true,
-        "free_tier": true,
-        "sso_support": true
+        "self-hosted": true,
+        "open-source": true,
+        "ocr-support": true,
+        "full-text-search": true,
+        "lightweight": false,
+        "cloud-hosted": false
       }
     },
     {
       "name": "Docspell",
       "url": "https://docspell.org",
-      "review": "Docspell provides automatic document classification and multi-user support but has a steeper configuration curve compared to Cabinet's lightweight approach.",
+      "review": "Docspell excels at automated document processing and tagging with OCR but has a steeper learning curve and heavier infrastructure requirements than Cabinet.",
       "source": "llm_only",
       "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": true,
-        "full_text_search": true,
-        "free_tier": true,
-        "sso_support": false
+        "self-hosted": true,
+        "open-source": true,
+        "ocr-support": true,
+        "full-text-search": true,
+        "lightweight": false,
+        "cloud-hosted": false
+      }
+    },
+    {
+      "name": "FileRun",
+      "url": "https://filerun.com",
+      "review": "FileRun offers a polished file manager with user management and cloud sync, but is not fully open-source and targets a broader file-sharing use case beyond document management.",
+      "source": "llm_only",
+      "features": {
+        "self-hosted": true,
+        "open-source": false,
+        "ocr-support": false,
+        "full-text-search": true,
+        "lightweight": true,
+        "cloud-hosted": false
       }
     },
     {
       "name": "Nextcloud",
       "url": "https://nextcloud.com",
-      "review": "Nextcloud is a full-featured cloud platform with file management capabilities, but it is significantly heavier and broader in scope than the focused simplicity of Cabinet.",
+      "review": "Nextcloud is a comprehensive self-hosted cloud platform with document management capabilities, but its broad feature scope makes it far heavier and more complex than Cabinet's focused approach.",
       "source": "llm_only",
       "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": false,
-        "full_text_search": true,
-        "free_tier": true,
-        "sso_support": true
-      }
-    },
-    {
-      "name": "Mayan EDMS",
-      "url": "https://www.mayan-edms.com",
-      "review": "Mayan EDMS is an enterprise-grade document management system with advanced workflows and ACLs, making it far more powerful but considerably more complex than Cabinet.",
-      "source": "llm_only",
-      "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": true,
-        "full_text_search": true,
-        "free_tier": true,
-        "sso_support": true
+        "self-hosted": true,
+        "open-source": true,
+        "ocr-support": false,
+        "full-text-search": true,
+        "lightweight": false,
+        "cloud-hosted": false
       }
     }
   ],
-  "run_at": "2026-09-14T14:44:08.799901+00:00",
+  "run_at": "2026-09-21T14:50:53.012813+00:00",
   "project_slug": "cabinet"
 }
