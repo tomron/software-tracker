@@ -15,18 +15,18 @@
     "self-hosted",
     "messaging"
   ],
-  "summary": "ntfy v2.28.0 (2026-08-27) is a hardening release that caps cache replay at 10 MB per topic, limits message titles to 1 KB and tags to 512 bytes, and applies the visitor bandwidth budget to poll requests. Recent prior releases (v2.27.0, v2.26.x, v2.25.0) added email-based login, password reset via magic links, message template DoS protections, a fail2ban-compatible abuse ban-feed, and configurable date/time formats in the web app. PostgreSQL support was promoted from experimental to stable in v2.27.0. Full release notes are available at https://github.com/binwiederhier/ntfy/releases.",
+  "summary": "ntfy has been actively releasing updates through mid-2026, with the latest being v2.28.0 (2026-08-27, https://github.com/binwiederhier/ntfy/releases/tag/v2.28.0), a hardening release that caps cache replay sizes at 10 MB per topic, enforces new size limits on message titles (1 KB) and tags (512 bytes), and applies the visitor bandwidth budget to poll requests. v2.27.0 (2026-08-04) dropped the 'experimental' label from PostgreSQL support, added email-based login, and hardened the message templating engine. Earlier releases added password reset via magic links (v2.25.0), a fail2ban-compatible abuse ban-feed (v2.26.3), and a CPU DoS fix for message templates (v2.26.0).",
   "answers": {
-    "What is the current license?": "Apache 2.0 (server) and GPL-2.0 (client) — dual-licensed; check the repository for exact terms",
-    "Is the project actively maintained?": "Yes — multiple releases in 2026 with frequent bug fixes, security hardening, and new features",
-    "Does it support authentication and access control?": "Yes — username/password, access tokens, email-based login, and per-topic access control are supported",
-    "Is there a hosted cloud version available?": "Yes — available at https://ntfy.sh"
+    "What is the current license?": "Apache 2.0 (server) and GPL-2.0 (client) — dual-licensed; see repository for details",
+    "Is the project actively maintained?": "Yes — multiple releases in 2026, most recently v2.28.0 on 2026-08-27",
+    "Does it support authentication and access control?": "Yes — username/password auth, access tokens, email-based login, and topic-level access control",
+    "Is there a hosted cloud version available?": "Yes — ntfy.sh is the official hosted cloud instance"
   },
   "breaking_changes": true,
   "breaking_excerpts": [
-    "Message title limited to 1 KB and all tags combined to 512 bytes; requests exceeding these limits are rejected with HTTP 400 (error codes 40057/40058) — previously no size limit existed.",
-    "Cache replay capped at 10 MB per topic per poll request; responses exceeding the cap are truncated and carry an X-Messages-Truncated: 1 header.",
-    "Message cache databases from ntfy older than v1.10.0 (November 2021) can no longer be migrated; upgrade via an older ntfy version first or delete the cache database."
+    "Message title now limited to 1 KB and all tags combined to 512 bytes; requests exceeding these limits are rejected with HTTP 400 (error codes 40057/40058).",
+    "Cache replay capped at 10 MB per topic per poll request; truncated responses include X-Messages-Truncated: 1 header — previously unbounded.",
+    "Message cache databases from ntfy older than v1.10.0 (November 2021) can no longer be migrated; must upgrade via an older ntfy version first or delete the cache database."
   ],
   "alternatives": [
     {
@@ -46,46 +46,46 @@
     {
       "name": "Apprise",
       "url": "https://github.com/caronc/apprise",
-      "review": "Apprise is a powerful multi-platform notification library supporting dozens of services but is a library/CLI tool rather than a standalone pub-sub server like ntfy.",
+      "review": "Apprise is a library/CLI supporting 80+ notification services rather than a standalone server, making it more flexible but requiring more integration effort than ntfy.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "cloud_hosted": false,
+        "no_app_required": true,
         "free_tier": true,
-        "android_push": true,
-        "rest_api": false
+        "REST_API": false
       }
     },
     {
       "name": "Pushbullet",
       "url": "https://www.pushbullet.com",
-      "review": "Pushbullet provides cross-device notifications and file sharing with a polished UX but is a closed-source cloud service with limited free tier, unlike ntfy's fully open self-hosted approach.",
+      "review": "Pushbullet offers cross-device notifications with file sharing features but is a proprietary cloud service with rate-limited free tier and no self-hosting.",
       "source": "llm_only",
       "features": {
         "self_hosted": false,
         "open_source": false,
         "cloud_hosted": true,
+        "no_app_required": false,
         "free_tier": true,
-        "android_push": true,
-        "rest_api": true
+        "REST_API": true
       }
     },
     {
-      "name": "Ntfy.sh (self-hosted PushBot / Matrix/Synapse bots)",
-      "url": "https://github.com/matrix-org/synapse",
-      "review": "Matrix/Synapse offers federated, encrypted messaging and notifications with self-hosting but is far more complex to operate than ntfy's simple HTTP pub-sub model.",
+      "name": "Ntfy (self-hosted) vs Bark",
+      "url": "https://github.com/Finb/Bark",
+      "review": "Bark is a lightweight iOS-only self-hosted push notification tool that is simpler to deploy but limited to Apple devices compared to ntfy's cross-platform support.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
-        "cloud_hosted": true,
+        "cloud_hosted": false,
+        "no_app_required": false,
         "free_tier": true,
-        "android_push": true,
-        "rest_api": true
+        "REST_API": true
       }
     }
   ],
-  "run_at": "2026-09-21T14:51:41.455124+00:00",
+  "run_at": "2026-09-28T16:28:14.955026+00:00",
   "project_slug": "ntfy"
 }
