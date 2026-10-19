@@ -20,13 +20,13 @@
     "self-hosted",
     "dashboards"
   ],
-  "summary": "Metabase is actively releasing frequent patch updates across multiple stable branches. The latest stable release is v0.63.19 (October 1, 2025), with a v0.64.0-beta pre-release also available (September 24, 2025). Multiple legacy branches (v0.58.x, v0.61.x, v0.62.x, v0.63.x) are receiving concurrent patch releases, indicating strong long-term support. Both Open Source and Enterprise editions are available as Docker images and JAR downloads; see the full release list at https://github.com/metabase/metabase/releases.",
+  "summary": "Metabase is actively maintained with frequent releases across multiple supported branches. The latest stable release is v0.64.1 (Enterprise: v1.64.1), released on October 7, 2025, with v0.64.0-beta having shipped on September 24, 2025. Multiple older branches (v0.63.x, v0.62.x, v0.58.x) continue to receive patch updates in parallel, indicating long-term support commitments. Release notes are available at https://github.com/metabase/metabase/releases, with both Open Source and Enterprise editions distributed via Docker and JAR.",
   "answers": {
-    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license.",
-    "Is the project actively maintained?": "Yes — multiple patch releases across several branches within the last month.",
-    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud (managed cloud) is available at https://www.metabase.com.",
-    "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition.",
-    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, BigQuery, Snowflake, Redshift, Druid, MongoDB, Presto, Spark SQL, Oracle, Vertica, and more via drivers."
+    "What is the current license?": "Open Source edition uses AGPL v3; Enterprise edition uses a commercial license (Metabase Commercial Software License)",
+    "Is the project actively maintained?": "Yes — multiple releases across several branches in September–October 2025",
+    "Is there a cloud-hosted version available?": "Yes — Metabase Cloud (managed cloud) is available at metabase.com",
+    "Does it support SSO and SAML authentication?": "Yes — SSO and SAML are supported in the Enterprise edition",
+    "What databases/data sources are supported?": "PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, Oracle, BigQuery, Snowflake, Redshift, MongoDB, Druid, Presto/Trino, Spark SQL, Athena, and more via drivers"
   },
   "breaking_changes": false,
   "breaking_excerpts": [],
@@ -62,7 +62,7 @@
     {
       "name": "Tableau",
       "url": "https://www.tableau.com",
-      "review": "Offers far more advanced visualization and analytics capabilities than Metabase but is expensive and not open source.",
+      "review": "Tableau offers more advanced visualization and enterprise features but is proprietary, significantly more expensive, and not self-hostable in the traditional sense.",
       "source": "llm_only",
       "features": {
         "open_source": false,
@@ -70,24 +70,24 @@
         "cloud_hosted": true,
         "no_sql_required": true,
         "free_tier": false,
-        "sso_support": true
+        "SSO": true
       }
     },
     {
-      "name": "Looker",
-      "url": "https://looker.com",
-      "review": "Provides a robust semantic modeling layer and enterprise governance that Metabase lacks, but is significantly more costly and requires technical setup.",
+      "name": "Lightdash",
+      "url": "https://www.lightdash.com",
+      "review": "Lightdash integrates tightly with dbt for a metrics-layer-first approach, making it great for dbt users but less flexible for teams without a dbt setup.",
       "source": "llm_only",
       "features": {
-        "open_source": false,
-        "self_hosted": false,
+        "open_source": true,
+        "self_hosted": true,
         "cloud_hosted": true,
         "no_sql_required": true,
-        "free_tier": false,
-        "sso_support": true
+        "free_tier": true,
+        "SSO": true
       }
     }
   ],
-  "run_at": "2026-10-05T16:48:39.098154+00:00",
+  "run_at": "2026-10-12T17:23:10.031983+00:00",
   "project_slug": "metabase"
 }
