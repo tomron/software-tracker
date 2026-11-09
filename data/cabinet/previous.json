@@ -10,91 +10,91 @@
     "self-hosted",
     "documents"
   ],
-  "summary": "Cabinet v0.5.0 (2026-07-04) is a major release with 238 commits introducing Connect Knowledge (Google Drive, iCloud, OneDrive, Dropbox integration), a 52-connector Integrations Hub (Slack, Google, Microsoft 365, Snowflake, LinkedIn, Discord, Telegram), per-room agent Channels, a Telegram remote-control gateway, and a 'Manila Arc' borderless UI redesign. Security improvements include PBKDF2 password hashing with per-install salt and login rate-limiting. v0.6.0 introduces a self-update mechanism, with future releases published at https://github.com/cabinetai/cabinet-releases. Notable breaking changes include a shift from hash-based to clean-path routing and an on-disk rename of the team-chat directory from `.slack` to `.channels`.",
+  "summary": "Cabinet v0.5.0 (2026-07-04) is a major release with 238 commits, introducing Connect Knowledge for read-only cloud drive integration (Google Drive, iCloud, OneDrive, Dropbox), a 52-connector Integrations Hub (Slack, Google, Microsoft 365, Snowflake, LinkedIn, Discord, Telegram), and per-room agent Channels. Notable security improvements include PBKDF2 password hashing with per-install salting and login rate-limiting. v0.6.0 introduces a self-update mechanism, with future releases published at https://github.com/cabinetai/cabinet-releases.",
   "answers": {
     "What is the current license?": "Not specified in the changelog",
-    "Is the project actively maintained?": "Yes — v0.5.0 released 2026-07-04 with 238 commits, and v0.6.0 followed shortly after",
-    "Does it support user authentication?": "Yes — PBKDF2 password hashing with per-install salt, login rate-limiting, mobile browser and reverse-proxy support",
+    "Is the project actively maintained?": "Yes — v0.5.0 released 2026-07-04 with 238 commits, v0.6.0 followed shortly after",
+    "Does it support user authentication?": "Yes — password-based auth with PBKDF2 hashing, per-install salt, rate-limiting, and reverse proxy support",
     "Is there a Docker image available?": "Not mentioned in the changelog"
   },
   "breaking_changes": true,
   "breaking_excerpts": [
-    "Clean-path routing: the app serves clean URLs instead of hash routes across web and Electron. Old hash links resolve via a marker-scan parser, but the canonical form is now path-based.",
-    "Channels on-disk rename: the internal team-chat directory moved from `.slack` to `.channels`, scoped per room.",
-    "v0.6.0: Cabinet now updates itself via a new updater; future releases are published at https://github.com/cabinetai/cabinet-releases rather than the original repository."
+    "Clean-path routing: the app serves clean URLs instead of hash routes across web and Electron; old hash links resolve via a marker-scan parser but the canonical form is now path-based.",
+    "Channels on-disk rename: the internal team-chat directory moved from '.slack' to '.channels', scoped per room.",
+    "v0.6.0 moves the update mechanism to a new location; future releases are published at https://github.com/cabinetai/cabinet-releases rather than the original repository."
   ],
   "alternatives": [
     {
       "name": "Paperless-ngx",
       "url": "https://github.com/paperless-ngx/paperless-ngx",
-      "review": "Paperless-ngx offers much richer document management with OCR and tagging but is significantly heavier and more complex to self-host than Cabinet.",
+      "review": "Paperless-ngx offers far more powerful OCR, tagging, and document indexing than Cabinet but is significantly heavier to self-host and configure.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": true,
-        "tagging_and_search": true,
-        "lightweight": false,
-        "cloud_hosted": false
+        "web_ui": true,
+        "full_text_search": true,
+        "lightweight": false
       }
     },
     {
       "name": "Teedy",
-      "url": "https://github.com/sismics/docs",
-      "review": "Teedy provides a full-featured document management system with workflows and permissions, but requires more resources and setup compared to Cabinet.",
+      "url": "https://teedy.io",
+      "review": "Teedy provides a more enterprise-grade document management experience with workflows and permissions, but requires more resources and setup than Cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": true,
-        "tagging_and_search": true,
-        "lightweight": false,
-        "cloud_hosted": false
+        "web_ui": true,
+        "full_text_search": true,
+        "lightweight": false
       }
     },
     {
       "name": "Docspell",
-      "url": "https://github.com/eikek/docspell",
-      "review": "Docspell excels at automated document organization and OCR but has a steeper setup curve and heavier footprint than Cabinet.",
+      "url": "https://docspell.org",
+      "review": "Docspell excels at automated document processing and metadata extraction but has a steeper learning curve and heavier stack compared to Cabinet.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": true,
-        "tagging_and_search": true,
-        "lightweight": false,
-        "cloud_hosted": false
-      }
-    },
-    {
-      "name": "Nextcloud Files",
-      "url": "https://nextcloud.com",
-      "review": "Nextcloud Files offers broad file management and collaboration features but is a much larger platform with significant overhead compared to Cabinet's minimal footprint.",
-      "source": "llm_only",
-      "features": {
-        "self_hosted": true,
-        "open_source": true,
-        "ocr_support": false,
-        "tagging_and_search": true,
-        "lightweight": false,
-        "cloud_hosted": true
+        "web_ui": true,
+        "full_text_search": true,
+        "lightweight": false
       }
     },
     {
       "name": "Filestash",
-      "url": "https://github.com/mickael-kerjean/filestash",
-      "review": "Filestash is similarly lightweight and self-hostable but focuses on connecting to various storage backends rather than acting as a standalone document cabinet.",
+      "url": "https://www.filestash.app",
+      "review": "Filestash is a lightweight file manager supporting many storage backends, but it lacks document-specific features like OCR and tagging that Cabinet focuses on.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "ocr_support": false,
-        "tagging_and_search": false,
-        "lightweight": true,
-        "cloud_hosted": false
+        "web_ui": true,
+        "full_text_search": false,
+        "lightweight": true
+      }
+    },
+    {
+      "name": "Mayan EDMS",
+      "url": "https://www.mayan-edms.com",
+      "review": "Mayan EDMS is a full-featured enterprise document management system with extensive workflow support, but it is considerably more complex and resource-intensive than Cabinet.",
+      "source": "llm_only",
+      "features": {
+        "self_hosted": true,
+        "open_source": true,
+        "ocr_support": true,
+        "web_ui": true,
+        "full_text_search": true,
+        "lightweight": false
       }
     }
   ],
-  "run_at": "2026-10-26T14:51:23.435403+00:00",
+  "run_at": "2026-11-02T17:49:00.269296+00:00",
   "project_slug": "cabinet"
 }
