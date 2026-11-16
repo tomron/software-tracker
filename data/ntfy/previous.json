@@ -15,18 +15,18 @@
     "self-hosted",
     "messaging"
   ],
-  "summary": "ntfy has been actively releasing updates through late October and November 2026. The latest release, v2.37.0 (Nov 2, 2026), improves UnifiedPush multi-server support with subscriber-based rate limiting shared via the database, adds Retry-After and RateLimit headers to HTTP 429 responses, and optimizes memory usage for one-off visitors. Earlier releases (v2.36.0, v2.35.0, v2.34.0) added persistent daily limits across restarts with PostgreSQL sharing, an experimental local admin socket, tier change improvements, and cluster/load balancer support. Release notes are available at https://github.com/binwiederhier/ntfy/releases.",
+  "summary": "ntfy has seen rapid development in late October–November 2026, with v2.37.2 being the latest release (2026-11-04, https://github.com/binwiederhier/ntfy/releases/tag/v2.37.2). Key improvements include cross-server UnifiedPush subscriber tracking via a shared database (v2.37.0), persistent daily rate-limit counters that survive restarts and are shared across PostgreSQL-backed clusters (v2.36.0), and security fixes for the Matrix push gateway (v2.35.0). Rate limiting has been significantly improved with Retry-After and RateLimit headers, smarter ban-feed weights, and per-visitor daily windows.",
   "answers": {
-    "What is the current license?": "Apache 2.0 (server) and GPL (client) — dual-licensed; check repository for exact terms",
+    "What is the current license?": "Apache 2.0 (server) and GPL-2.0 (client) — see repository for details",
     "Is the project actively maintained?": "Yes — multiple releases in October–November 2026 with active bug fixes and features",
-    "Does it support authentication and access control?": "Yes — user accounts, tiers, token-based auth, and access control are supported",
-    "Is there a hosted cloud version available?": "Yes — available at https://ntfy.sh"
+    "Does it support authentication and access control?": "Yes — user database, tiers, tokens, and access control are supported",
+    "Is there a hosted cloud version available?": "Yes — ntfy.sh is the official hosted cloud version"
   },
   "breaking_changes": true,
   "breaking_excerpts": [
-    "v2.36.0: Everyone's daily counts start over at upgrade — stats_* columns of the user table are zeroed and no longer used",
-    "v2.36.0: Servers sharing a PostgreSQL database must keep their clocks in sync (NTP); visitors without a tier have a daily e-mail limit again",
-    "v2.37.0: UnifiedPush push to a topic with no subscriber for 4 days now returns 410 Gone (error 41002) instead of 507, causing app servers like Mastodon to remove the expired subscription"
+    "v2.36.0 upgrade: everyone's daily counts start over at upgrade — stats_* columns of the user table are zeroed and no longer used",
+    "v2.36.0: the whole server config is checked again at startup when base-url or message-size-limit above 4K is set, so a previously-tolerated invalid config now fails at startup",
+    "v2.37.0 behavior change: the ntfy_visitors_total metric and 'visitors' stat now count visitors of roughly the last minute instead of the last day, changing its semantics"
   ],
   "alternatives": [
     {
@@ -46,46 +46,46 @@
     {
       "name": "Apprise",
       "url": "https://github.com/caronc/apprise",
-      "review": "Apprise supports a massive number of notification targets in one library but is a notification dispatcher rather than a standalone pub-sub server.",
+      "review": "Apprise is a powerful open-source notification library supporting 80+ services but is a library/CLI tool rather than a standalone pub-sub server like ntfy.",
       "source": "llm_only",
       "features": {
-        "self-hosted": true,
-        "open-source": true,
-        "cloud-hosted": false,
-        "free-tier": true,
-        "REST-API": true,
-        "multi-platform-push": true
+        "self_hosted": true,
+        "open_source": true,
+        "cloud_hosted": false,
+        "free_tier": true,
+        "no_app_required": true,
+        "rest_api": false
       }
     },
     {
       "name": "Pushbullet",
       "url": "https://www.pushbullet.com",
-      "review": "Pushbullet provides cross-device notification mirroring and file sharing but is closed-source and has heavily restricted its free tier over time.",
+      "review": "Pushbullet provides cross-device notifications and file sharing but is a proprietary cloud service with a restrictive free tier and no self-hosting, unlike ntfy.",
       "source": "llm_only",
       "features": {
-        "self-hosted": false,
-        "open-source": false,
-        "cloud-hosted": true,
-        "free-tier": true,
-        "REST-API": true,
-        "multi-platform-push": true
+        "self_hosted": false,
+        "open_source": false,
+        "cloud_hosted": true,
+        "free_tier": true,
+        "no_app_required": false,
+        "rest_api": true
       }
     },
     {
-      "name": "Ntopng / Alertmanager (Prometheus)",
-      "url": "https://github.com/prometheus/alertmanager",
-      "review": "Alertmanager is a powerful self-hosted alert routing system but is purpose-built for Prometheus metrics alerting rather than general-purpose script-driven notifications.",
+      "name": "Alertmanager + Webhook",
+      "url": "https://prometheus.io/docs/alerting/latest/alertmanager/",
+      "review": "Alertmanager is better suited for infrastructure alerting pipelines but is far more complex to configure and not designed as a general-purpose pub-sub notification tool like ntfy.",
       "source": "llm_only",
       "features": {
-        "self-hosted": true,
-        "open-source": true,
-        "cloud-hosted": false,
-        "free-tier": true,
-        "REST-API": true,
-        "multi-platform-push": false
+        "self_hosted": true,
+        "open_source": true,
+        "cloud_hosted": false,
+        "free_tier": true,
+        "no_app_required": true,
+        "rest_api": true
       }
     }
   ],
-  "run_at": "2026-11-02T17:49:43.557306+00:00",
+  "run_at": "2026-11-09T18:20:19.015160+00:00",
   "project_slug": "ntfy"
 }
