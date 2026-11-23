@@ -15,18 +15,18 @@
     "self-hosted",
     "messaging"
   ],
-  "summary": "ntfy v2.38.1 (released 2026-11-16, https://github.com/binwiederhier/ntfy/releases/tag/v2.38.1) is a critical security release that hardens message templating against denial-of-service attacks, fixes S3 attachment memory leaks, and tightens web push subscription limits per IP prefix — upgrading is strongly recommended. v2.38.0 (2026-11-14) introduced cluster-wide rate limit sharing across nodes and patched a DoS bug where crafted templates could build multi-gigabyte strings. v2.37.0 (2026-11-02) added cross-server UnifiedPush subscriber billing via the database, Retry-After and RateLimit headers on HTTP 429 responses, and a 410 Gone response for stale UnifiedPush subscriptions older than 4 days.",
+  "summary": "ntfy v2.38.1 (released 2026-11-16, https://github.com/binwiederhier/ntfy/releases/tag/v2.38.1) is a critical security release that hardens message templating against denial-of-service attacks including regex bombs, unbounded string/list construction, and self-referential template crashes. v2.38.0 added cluster-wide shared rate limiting across nodes and fixed a DoS bug in templating string amplification. Earlier v2.37.x releases improved UnifiedPush multi-server support, added Retry-After and RateLimit headers to rate-limited responses, and fixed a database performance regression.",
   "answers": {
-    "What is the current license?": "Apache 2.0 (server) and GPL v2 (client apps); check repository for exact details",
+    "What is the current license?": "Apache 2.0 (server) and GPL-2.0 (client) — dual-licensed; check repository for specifics",
     "Is the project actively maintained?": "Yes — multiple releases in November 2026 with active bug fixes and security patches",
-    "Does it support authentication and access control?": "Yes — user database, tier-based access control, and visitor rate limiting with subscriber-based billing",
+    "Does it support authentication and access control?": "Yes — user database, access control lists, rate limiting per user/IP, and subscriber-based rate limiting are supported",
     "Is there a hosted cloud version available?": "Yes — ntfy.sh is the official hosted cloud instance"
   },
   "breaking_changes": true,
   "breaking_excerpts": [
-    "With visitor-subscriber-rate-limiting, a UnifiedPush push to a topic with no subscriber for 4 days now returns 410 Gone (error 41002) instead of 507, causing app servers like Mastodon to remove the expired subscription.",
-    "Message templating: html, js, and urlquery functions are no longer allowed; printf only accepts plain directives (no explicit argument indexes or %p) and no lists or dicts as arguments.",
-    "Message templating: regexMatch, regexFind, and related regex functions now reject patterns longer than 1024 bytes or compiling to more than 5000 instructions."
+    "Message templating: printf no longer accepts explicit argument indexes or %p, and html/js/urlquery functions are disallowed — templates relying on these will break",
+    "UnifiedPush: a push to a topic with no subscriber for 4 days now returns 410 Gone (error 41002) instead of 507, causing app servers like Mastodon to remove the expired subscription",
+    "Message templating: regexMatch and related functions now reject patterns longer than 1024 bytes or compiling to more than 5000 instructions"
   ],
   "alternatives": [
     {
@@ -46,7 +46,7 @@
     {
       "name": "Apprise",
       "url": "https://github.com/caronc/apprise",
-      "review": "Apprise is a powerful multi-platform notification library supporting dozens of services but is a library/CLI tool rather than a standalone pub-sub server like ntfy.",
+      "review": "Apprise is a powerful open-source notification library supporting 80+ services but is a library/CLI tool rather than a standalone pub-sub server with its own push infrastructure.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
@@ -54,13 +54,13 @@
         "cloud_hosted": false,
         "free_tier": true,
         "ios_support": true,
-        "rest_api": false
+        "scriptable_http_api": true
       }
     },
     {
       "name": "Pushbullet",
       "url": "https://www.pushbullet.com",
-      "review": "Pushbullet provides cross-device notifications and file sharing but is a proprietary cloud service with a limited free tier and no self-hosting capability.",
+      "review": "Pushbullet provides cross-device push notifications with file sharing features but is a closed-source cloud service with a limited free tier and uncertain long-term development.",
       "source": "llm_only",
       "features": {
         "self_hosted": false,
@@ -68,24 +68,24 @@
         "cloud_hosted": true,
         "free_tier": true,
         "ios_support": true,
-        "rest_api": true
+        "scriptable_http_api": true
       }
     },
     {
-      "name": "ntopng Notifications / Alertmanager (Prometheus)",
-      "url": "https://github.com/prometheus/alertmanager",
-      "review": "Alertmanager is a powerful self-hosted alert routing system that integrates deeply with Prometheus but is significantly more complex to set up compared to ntfy's simple HTTP pub-sub model.",
+      "name": "ntopng / Bark",
+      "url": "https://github.com/Finb/Bark",
+      "review": "Bark is a lightweight self-hosted iOS-focused push notification tool that is simpler than ntfy but limited to Apple devices and lacks Android or web support.",
       "source": "llm_only",
       "features": {
         "self_hosted": true,
         "open_source": true,
         "cloud_hosted": false,
         "free_tier": true,
-        "ios_support": false,
-        "rest_api": true
+        "ios_support": true,
+        "scriptable_http_api": true
       }
     }
   ],
-  "run_at": "2026-11-16T17:57:40.206113+00:00",
+  "run_at": "2026-11-23T19:51:44.649396+00:00",
   "project_slug": "ntfy"
 }
